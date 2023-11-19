@@ -1,6 +1,7 @@
 <script>
     import "../app.css";
-  </script>
+    export const prerender = true;
+</script>
   <div class="grid grid-cols-1 justify-items-center">
     <slot />
   </div>
