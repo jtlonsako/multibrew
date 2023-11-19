@@ -25,22 +25,22 @@ let totalCoffeeGrounds = $derived(Math.floor(sizeLevels[selectedSize] / strength
     <hr class="w-48 h-0 mx-auto opacity-30 rounded">
 
     <div id="StrengthValuesContainer" class="flex flex-row justify-center mt-4">
-        <button id="Light" on:click={() => selectedStrength = "Light"} class="px-10 font-extralight transition ease-in-out {selectedStrength == "Light" ? "scale-150 pt-3": "text-zinc-500 text-base mt-4"}
+        <button id="Light" on:click={() => selectedStrength = "Light"} class="px-10 font-extralight transition ease-in-out duration-200 {selectedStrength == "Light" ? "scale-150 mt-2": "text-zinc-500 mt-4"}
              grid grid-cols-1 justify-items-center">
             <p class="font-serif tracking-wide">Light</p>
-            <p class="text-sm font-thin italic">1:{strengthLevels["Light"]}</p>
+            <p class="font-thin text-xs italic transition ease-in-out {selectedStrength == "Light" ? "-mt-2" : ""}">1:{strengthLevels["Light"]}</p>
         </button>        
         
-        <button id="Medium" on:click={() => selectedStrength = "Medium"} class="px-10 font-extralight {selectedStrength == "Medium" ? "text-3xl": "text-zinc-500 text-base mt-4"}
+        <button id="Medium" on:click={() => selectedStrength = "Medium"} class="px-10 font-extralight transition ease-in-out duration-200 {selectedStrength == "Medium" ? "scale-150 mt-2": "text-zinc-500 mt-4"}
              grid grid-cols-1 justify-items-center">
             <p class="font-serif tracking-wide">Medium</p>
-            <p class="text-sm font-thin italic">1:{strengthLevels["Medium"]}</p>
+            <p class="font-thin text-xs italic transition ease-in-out {selectedStrength == "Medium" ? "-mt-2" : ""}">1:{strengthLevels["Medium"]}</p>
         </button>
         
-        <button id="Strong" on:click={() => selectedStrength = "Strong"} class="px-10 font-extralight {selectedStrength == "Strong" ? "text-3xl": "text-zinc-500 text-base mt-4"}
+        <button id="Strong" on:click={() => selectedStrength = "Strong"} class="px-10 font-extralight transition ease-in-out duration-200 {selectedStrength == "Strong" ? "scale-150 mt-2": "text-zinc-500 mt-4"}
              grid grid-cols-1 justify-items-center">
             <p class="font-serif tracking-wide">Strong</p>
-            <p class="text-sm font-thin italic">1:{strengthLevels["Strong"]}</p>
+            <p class="font-thin text-xs italic transition ease-in-out {selectedStrength == "Strong" ? "-mt-2" : ""}">1:{strengthLevels["Strong"]}</p>
         </button>
     </div>
 
@@ -51,22 +51,22 @@ let totalCoffeeGrounds = $derived(Math.floor(sizeLevels[selectedSize] / strength
     <hr class="w-48 h-0 mx-auto opacity-30 rounded">
 
     <div id="SizeValuesContainer" class="flex flex-row justify-center mt-4">
-        <button id="Short" on:click={() => selectedSize = "Short"} class="px-10 font-extralight {selectedSize == "Short" ? "text-3xl": "text-zinc-500 text-base mt-4"}
+        <button id="Short" on:click={() => selectedSize = "Short"} class="px-10 font-extralight transition ease-in-out duration-200 {selectedSize == "Short" ? "scale-150 pt-2": "text-zinc-500 mt-4"}
              grid grid-cols-1 justify-items-center">
              <p class="font-serif tracking-wide">{sizeLevels["Short"]}ml</p>
-             <p class="text-sm font-thin italic">Short</p>
+             <p class=" text-xs font-thin italic transition ease-in-out {selectedSize == "Short" ? "-mt-2" : ""}">Short</p>
         </button>        
         
-        <button id="Tall" on:click={() => selectedSize = "Tall"} class="px-10 font-extralight {selectedSize == "Tall" ? "text-3xl": "text-zinc-500 text-base mt-4"}
+        <button id="Tall" on:click={() => selectedSize = "Tall"} class="px-10 font-extralight transition ease-in-out duration-200 {selectedSize == "Tall" ? "scale-150 pt-2": "text-zinc-500 mt-4"}
              grid grid-cols-1 justify-items-center">
              <p class="font-serif tracking-wide">{sizeLevels["Tall"]}ml</p>
-             <p class="text-sm font-thin italic">Tall</p>
+             <p class=" text-xs font-thin italic transition ease-in-out {selectedSize == "Tall" ? "-mt-2" : ""}">Tall</p>
         </button>
         
-        <button id="Grande" on:click={() => selectedSize = "Grande"} class="px-10 font-extralight {selectedSize == "Grande" ? "text-3xl": "text-zinc-500 text-base mt-4"}
+        <button id="Grande" on:click={() => selectedSize = "Grande"} class="px-10 font-extralight transition ease-in-out duration-200 {selectedSize == "Grande" ? "scale-150 pt-2": "text-zinc-500 mt-4"}
              grid grid-cols-1 justify-items-center">
              <p class="font-serif tracking-wide">{sizeLevels["Grande"]}ml</p>
-             <p class="text-sm font-thin italic">Grande</p>
+             <p class=" text-xs font-thin italic transition ease-in-out {selectedSize == "Grande" ? "-mt-2" : ""}">Grande</p>
         </button>
     </div>
 </div>
