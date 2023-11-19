@@ -25,7 +25,7 @@ let totalCoffeeGrounds = $derived(Math.floor(sizeLevels[selectedSize] / strength
     <hr class="w-48 h-0 mx-auto opacity-30 rounded">
 
     <div id="StrengthValuesContainer" class="flex flex-row justify-center mt-4">
-        <button id="Light" on:click={() => selectedStrength = "Light"} class="px-10 font-extralight transition ease-in-out {selectedStrength == "Light" ? "scale-150": "text-zinc-500 text-base mt-4"} delay-150
+        <button id="Light" on:click={() => selectedStrength = "Light"} class="px-10 font-extralight transition ease-in-out {selectedStrength == "Light" ? "scale-150 pt-3": "text-zinc-500 text-base mt-4"}
              grid grid-cols-1 justify-items-center">
             <p class="font-serif tracking-wide">Light</p>
             <p class="text-sm font-thin italic">1:{strengthLevels["Light"]}</p>
