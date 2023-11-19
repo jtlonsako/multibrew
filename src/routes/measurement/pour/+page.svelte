@@ -11,7 +11,7 @@ const strengthLevels = {
 const sizeLevels = {
     "Short": 227,
     "Tall": 320,
-    "Grande": 454
+    "Grande": 424
 }
 
 let selectedStrength = $state("Medium") //selectedStrength = index of current selection in strength level
