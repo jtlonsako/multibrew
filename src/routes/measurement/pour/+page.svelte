@@ -20,7 +20,7 @@ let totalCoffeeGrounds = $derived(Math.floor(sizeLevels[selectedSize] / strength
 
 </script>
 
-<div id="StrengthContainer" class="w-5/6 text-slate-100 place-content-center mt-10 mb-14">
+<div id="StrengthContainer" class="w-5/6 text-slate-100 place-content-center mt-10 mb-12">
     <p class="text-base font-thin text-center mb-1"> Strength </p>
     <hr class="w-48 h-0 mx-auto opacity-30 rounded">
 
