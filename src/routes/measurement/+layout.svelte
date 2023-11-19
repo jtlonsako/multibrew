@@ -5,7 +5,7 @@
     let coffeeType = $state("Pour Over")
 </script>
 
-<button class="w-1/2 mt-20">
+<button class="w-1/2 mt-10">
     <div class="flex flex-row py-1 text-slate-100 font-serif text-sm rounded-lg bg-zinc-700 justify-around place-items-center">
         <PourOverIcon />
             {coffeeType}

@@ -1,5 +1,5 @@
 <script>
-    import CoffeeBeanIcon from "$lib/components/CoffeeBeanIcon.svelte";
+    import CoffeeBeanIcon from "$lib/components/icons/CoffeeBeanIcon.svelte";
 
 const strengthLevels = {
     "Light": 18,

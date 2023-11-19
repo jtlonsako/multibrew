@@ -1,22 +1,10 @@
 <script>
-    let ratio = $state(15)
-    let amountOfWater = $state(320)
-    let coffeeGrinds = $derived(Math.floor(amountOfWater / ratio))
+    import PourOverIcon from "$lib/components/icons/PourOverIcon.svelte";
 </script>
 
-<div class="grid grid-cols-1 justify-items-center bg-slate-500d text-white">
-    <div class="py-10">
-        <h1>Strength</h1>
-        <button on:click={() => (ratio -=1)}>-</button>1:{ratio} <button on:click={() => (ratio += 1)}>+</button>
-    </div>
-    
-    <div class="py-10">
-        <h1>Size</h1>
-        <button on:click={() => (amountOfWater -= 10)}>-</button>{amountOfWater} <button on:click={() => (amountOfWater += 10)}>+</button>
-    </div>
-    
-    <div class="py-10 grid grid-cols-1 justify-items-center">
-        <h1>Coffee Grinds</h1>
-        {coffeeGrinds}g
-    </div>
+<div class="h-screen text-white items-center">
+    <a href="/measurement/pour" class=" flex items-center justify-center">
+        <span><PourOverIcon size="large" /></span> 
+        <p class="font-mono text-2xl text-zinc-50 ml-3">Pour Over</p>
+    </a>
 </div>
