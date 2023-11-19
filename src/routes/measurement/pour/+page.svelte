@@ -14,9 +14,9 @@ const sizeLevels = {
     "Grande": 454
 }
 
-let selectedStrength = $state(1) //selectedStrength = index of current selection in strength level
-let selectedSize = $state(1) //selectedSize = index of current selection of size level
-let totalCoffeeGrounds = $derived(Math.floor(Object.values(sizeLevels)[selectedSize] / Object.values(strengthLevels)[selectedStrength]))
+let selectedStrength = $state("Medium") //selectedStrength = index of current selection in strength level
+let selectedSize = $state("Tall") //selectedSize = index of current selection of size level
+let totalCoffeeGrounds = $derived(Math.floor(sizeLevels[selectedSize] / strengthLevels[selectedStrength]))
 
 </script>
 
@@ -25,19 +25,19 @@ let totalCoffeeGrounds = $derived(Math.floor(Object.values(sizeLevels)[selectedS
     <hr class="w-48 h-0 mx-auto opacity-30 rounded">
 
     <div id="StrengthValuesContainer" class="flex flex-row justify-center mt-4">
-        <button id="Light" on:click={() => selectedStrength = 0} class="px-10 font-extralight {selectedStrength == 0 ? "text-3xl": "text-zinc-500 text-base mt-4"}
+        <button id="Light" on:click={() => selectedStrength = "Light"} class="px-10 font-extralight {selectedStrength == "Light" ? "text-3xl": "text-zinc-500 text-base mt-4"}
              grid grid-cols-1 justify-items-center">
             <p class="font-serif tracking-wide">Light</p>
             <p class="text-sm font-thin italic">1:{strengthLevels["Light"]}</p>
         </button>        
         
-        <button id="Medium" on:click={() => selectedStrength = 1} class="px-10 font-extralight {selectedStrength == 1 ? "text-3xl": "text-zinc-500 text-base mt-4"}
+        <button id="Medium" on:click={() => selectedStrength = "Medium"} class="px-10 font-extralight {selectedStrength == "Medium" ? "text-3xl": "text-zinc-500 text-base mt-4"}
              grid grid-cols-1 justify-items-center">
             <p class="font-serif tracking-wide">Medium</p>
             <p class="text-sm font-thin italic">1:{strengthLevels["Medium"]}</p>
         </button>
         
-        <button id="Strong" on:click={() => selectedStrength = 2} class="px-10 font-extralight {selectedStrength == 2 ? "text-3xl": "text-zinc-500 text-base mt-4"}
+        <button id="Strong" on:click={() => selectedStrength = "Strong"} class="px-10 font-extralight {selectedStrength == "Strong" ? "text-3xl": "text-zinc-500 text-base mt-4"}
              grid grid-cols-1 justify-items-center">
             <p class="font-serif tracking-wide">Strong</p>
             <p class="text-sm font-thin italic">1:{strengthLevels["Strong"]}</p>
@@ -51,19 +51,19 @@ let totalCoffeeGrounds = $derived(Math.floor(Object.values(sizeLevels)[selectedS
     <hr class="w-48 h-0 mx-auto opacity-30 rounded">
 
     <div id="SizeValuesContainer" class="flex flex-row justify-center mt-4">
-        <button id="Short" on:click={() => selectedSize = 0} class="px-10 font-extralight {selectedSize == 0 ? "text-3xl": "text-zinc-500 text-base mt-4"}
+        <button id="Short" on:click={() => selectedSize = "Short"} class="px-10 font-extralight {selectedSize == "Short" ? "text-3xl": "text-zinc-500 text-base mt-4"}
              grid grid-cols-1 justify-items-center">
              <p class="font-serif tracking-wide">{sizeLevels["Short"]}ml</p>
              <p class="text-sm font-thin italic">Short</p>
         </button>        
         
-        <button id="Tall" on:click={() => selectedSize = 1} class="px-10 font-extralight {selectedSize == 1 ? "text-3xl": "text-zinc-500 text-base mt-4"}
+        <button id="Tall" on:click={() => selectedSize = "Tall"} class="px-10 font-extralight {selectedSize == "Tall" ? "text-3xl": "text-zinc-500 text-base mt-4"}
              grid grid-cols-1 justify-items-center">
              <p class="font-serif tracking-wide">{sizeLevels["Tall"]}ml</p>
              <p class="text-sm font-thin italic">Tall</p>
         </button>
         
-        <button id="Grande" on:click={() => selectedSize = 2} class="px-10 font-extralight {selectedSize == 2 ? "text-3xl": "text-zinc-500 text-base mt-4"}
+        <button id="Grande" on:click={() => selectedSize = "Grande"} class="px-10 font-extralight {selectedSize == "Grande" ? "text-3xl": "text-zinc-500 text-base mt-4"}
              grid grid-cols-1 justify-items-center">
              <p class="font-serif tracking-wide">{sizeLevels["Grande"]}ml</p>
              <p class="text-sm font-thin italic">Grande</p>
@@ -84,7 +84,7 @@ let totalCoffeeGrounds = $derived(Math.floor(Object.values(sizeLevels)[selectedS
     </div>
 
     <div id="WaterValue" class="text-center mt-8">
-        <p class="text-5xl font-light font-mono">{Object.values(sizeLevels)[selectedSize]}ml</p>
+        <p class="text-5xl font-light font-mono">{sizeLevels[selectedSize]}ml</p>
         <div class="flex flex-row justify-center place-items-center mt-2">
             <p class="px-2 font-extralight text-sm italic">Water</p>
         </div>
