@@ -83,7 +83,7 @@ let totalCoffeeGrounds = $derived(Math.floor(sizeLevels[selectedSize] / strength
         </div>
     </div>
 
-    <div id="WaterValue" class="text-center mt-8">
+    <div id="WaterValue" class="text-center mt-6">
         <p class="text-5xl font-light font-mono">{sizeLevels[selectedSize]}ml</p>
         <div class="flex flex-row justify-center place-items-center mt-2">
             <p class="px-2 font-extralight text-sm italic">Water</p>
