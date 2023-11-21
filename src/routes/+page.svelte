@@ -7,4 +7,7 @@
         <span><PourOverIcon size="large" /></span> 
         <p class="font-mono text-2xl text-zinc-50 ml-3">Pour Over</p>
     </a>
+    <a href="/measurement/phin" class=" flex items-center justify-center pt-16">
+        <p class="font-mono text-2xl text-zinc-50 ml-3">Vietnamese Phin</p>
+    </a>
 </div>
