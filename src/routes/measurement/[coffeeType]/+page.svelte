@@ -3,47 +3,38 @@
     import SelectionList from "$lib/components/SelectionList.svelte";
 
     let {data} = $props()
-    let {name, strengthLevels, sizeLevels, operation} = data.brewData
+    let {name, route, selectionLists, operation} = data.brewData
 
-    console.log
-    let strengthKeys = Object.keys(strengthLevels)
-    let sizeKeys = Object.keys(sizeLevels)
+    //Declare an array of reactive selectors whose names correspond to the MIDDLE value of each selectionList level array
+    let selectionVars = $state(selectionLists.map((list) => Object.keys(list.levels)[Object.keys(list.levels).length % 2]))
 
-    let selectedStrength = $state(strengthKeys[strengthKeys.length % 2])
-    let selectedSize = $state(sizeKeys[sizeKeys.length % 2])
+    let selectedStrength = $state("Normal")
     let totalCoffeeGrounds = $derived(
         operation == "div" ?
-        Math.floor(sizeLevels[selectedSize] / strengthLevels[selectedStrength])
-        : sizeLevels[selectedSize]
+        Math.floor(selectionLists[1].levels[selectionVars[1]] / selectionLists[0].levels[selectionVars[0]])
+        : selectionLists[1].levels[selectionVars[1]]
     )
 
     let totalWaterAmount = $derived(
         operation == "mult" ?
-        sizeLevels[selectedSize] * strengthLevels[selectedStrength]
-        : sizeLevels[selectedSize]
+        selectionLists[1].levels[selectionVars[1]] * selectionLists[0].levels[selectionVars[0]]
+        : selectionLists[1].levels[selectionVars[1]]
     )
 
 </script>
 
-
 <div class="mt-10 flex flex-col place-items-center">
-    <SelectionList 
-        selectorName="Strength" 
-        selectorLevels={strengthLevels} 
-        bind:selectedLevel={selectedStrength} 
-        keyNaming={true}
-        addSubstring="secondary"
-        preString="1:"
-    />
-
-    <SelectionList 
-        selectorName="Size" 
-        selectorLevels={sizeLevels} 
-        bind:selectedLevel={selectedSize} 
-        keyNaming={false}
-        addSubstring="main"
-        postString="ml"
-    />
+    {#each selectionLists as itemList, i}
+        <SelectionList
+            selectorName={itemList.name}
+            selectorLevels={itemList.levels}
+            bind:selectedLevel={selectionVars[i]}
+            keyNaming={itemList.keyNaming}
+            addSubstring={itemList.addSubstring}
+            preString={itemList.preString}
+            postString={itemList.postString}
+        />
+    {/each}
 </div>
 
 <FinalRecipeComponent 

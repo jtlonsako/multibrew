@@ -5,8 +5,7 @@ export function load({ params }) {
     return {
         brewData: {
             name: brewData?.name,
-            strengthLevels: brewData?.strengthLevels,
-            sizeLevels: brewData?.sizeLevels,
+            selectionLists: brewData?.selectionLists,
             operation: brewData?.operation
         }
     }
