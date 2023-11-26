@@ -36,7 +36,7 @@ export const coffeeData = [
                     {
                         Title: "320ml",
                         Description: "Tall",
-                        Value: 230
+                        Value: 320
                     },
                     {
                         Title: "424ml",
@@ -55,27 +55,44 @@ export const coffeeData = [
         selectionLists: [
             {
                 name: "Strength",
-                levels:{
-                    "Light": 7,
-                    "Normal": 8,
-                    "Strong": 9
-                },
-                keyNaming: true,
-                addSubstring: SubstringTypes.Secondary,
-                preString: "1:",
-                postString: ""
+                levels:[
+
+                    {
+                        Title: "Light",
+                        Description: "1:7",
+                        Value: 7
+                    },
+                    {
+                        Title: "Normal",
+                        Description: "1:8",
+                        Value: 8
+                    },
+                    {
+                        Title: "Strong",
+                        Description: "1:9",
+                        Value: 9
+                    }
+                ]
             },
             {
                 name: "Size",
-                levels: {
-                    "Small": 12,
-                    "Medium": 14,
-                    "Large": 16
-                },
-                keyNaming: false,
-                addSubstring: SubstringTypes.Primary,
-                preString: "",
-                postString: "g"
+                levels: [
+                    {
+                        Title: "Small",
+                        Description: "12g",
+                        Value: 12
+                    },
+                    {
+                        Title: "Medium",
+                        Description: "14g",
+                        Value: 14
+                    },
+                    {
+                        Title: "Large",
+                        Description: "16g",
+                        Value: 16
+                    }
+                ]
             }   
         ],
         operation: "mult"
