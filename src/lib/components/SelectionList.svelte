@@ -35,6 +35,7 @@
             {
                 selectedLevelValue = displayedButtonArray[i].Value
                 displayedButtonArray.pop()
+                displayedButtonArray = displayedButtonArray
             }
             else if(fullButtonArray.findIndex((level) => level.Title == displayedButtonArray[i].Title) == fullButtonArray.length - 1)
             {
