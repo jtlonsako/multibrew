@@ -27,7 +27,10 @@ export const coffeeData = [
                 levelDescription:
                 {
                     prestring: "1:",
-                    poststring: ""
+                    poststring: "",
+                    min:2,
+                    max:25,
+                    defaultCustomValue: 12
                 }
             },
             {
@@ -52,7 +55,10 @@ export const coffeeData = [
                 levelDescription:
                 {
                     prestring: "",
-                    poststring: "ml"
+                    poststring: "ml",
+                    min:25,
+                    max:5000,
+                    defaultCustomValue: 500
                 }
             }
         ],
@@ -82,8 +88,15 @@ export const coffeeData = [
                         Description: "1:9",
                         Value: 9
                     }
-                ]
-            },
+                ],
+                levelDescription:
+                {
+                    prestring: "1:",
+                    poststring: "",
+                    min:2,
+                    max:20,
+                    defaultCustomValue: 5
+                }            },
             {
                 name: "Size",
                 levels: [
@@ -102,7 +115,15 @@ export const coffeeData = [
                         Description: "16g",
                         Value: 16
                     }
-                ]
+                ],
+                levelDescription:
+                {
+                    prestring: "",
+                    poststring: "g",
+                    min:1,
+                    max:50,
+                    defaultCustomValue: 18
+                }
             }   
         ],
         operation: "mult"

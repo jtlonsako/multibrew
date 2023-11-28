@@ -28,13 +28,13 @@
 
 </script>
 
-<div class="absolute w-5/6 md:w-2/6 h-screen justify-center">
+<div class="absolute h-screen w-screen grid place-items-center -my-24 items-center bg-zinc-900 bg-opacity-80">
 	{#if open}
 		<div
 			on:outside={closeModal}
 			use:clickOutside
 			transition:fade
-			class="grid place-items-center bg-zinc-700"
+			class="grid w-5/6 md:w-3/12 rounded-lg pt-8 pb-10 z-10 place-items-center bg-opacity-100 bg-zinc-600"
 		>
 			<slot />
 		</div>

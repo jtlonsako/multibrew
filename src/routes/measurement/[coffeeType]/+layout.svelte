@@ -17,7 +17,7 @@
     </div>
 </button>
 {#if isOpen}
-    <div class="absolute my-10 md:my-14 bg-zinc-700 rounded-lg shadow-xl" >
+    <div class="absolute z-10 grid items-center my-10 md:my-14 bg-zinc-700 rounded-lg shadow-xl" >
         {#each coffeeData as brewType}
             <a href="/measurement/{brewType.route}" target="_self" class="block px-4 py-2 text-slate-400 hover:bg-zinc-500 hover:text-white">
                 {brewType.name}

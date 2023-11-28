@@ -5,11 +5,11 @@
             selectorName, selectorLevels, selectedLevelValue, selectorLevelDescription
         } = $props()
 
-    let customValue = $state(12)
+    let customValue = $state(selectorLevelDescription.defaultCustomValue)
 
     let customButton = $derived({
         Title: "Custom",
-        Description: "1:" + customValue,
+        Description: selectorLevelDescription.prestring + customValue + selectorLevelDescription.poststring,
         Value: customValue
     })
 
@@ -17,6 +17,11 @@
 
     let fullButtonArray = $derived([...selectorLevels, customButton])
     let displayedButtonArray = $state([...selectorLevels])
+
+    const updateCustomButton = () => {
+        displayedButtonArray[displayedButtonArray.length - 1] = customButton
+        selectedLevelValue = customValue
+    }
 
     const updateCalculatedValues = (i) => {
         if (selectedLevelValue == displayedButtonArray[i].Value) {
@@ -30,7 +35,6 @@
             {
                 selectedLevelValue = displayedButtonArray[i].Value
                 displayedButtonArray.pop()
-                displayedButtonArray = displayedButtonArray
             }
             else if(fullButtonArray.findIndex((level) => level.Title == displayedButtonArray[i].Title) == fullButtonArray.length - 1)
             {
@@ -88,7 +92,7 @@
                 <div class="flex flex-row mt-4 text-5xl justify-center">
                     {selectorLevelDescription.prestring}{customValue}{selectorLevelDescription.poststring}
                 </div>
-                <input type="range" bind:value={customValue} min=1 max=25 step=0.1 />
+                <input type="range" on:change={updateCustomButton} bind:value={customValue} min={selectorLevelDescription.min} max={selectorLevelDescription.max} step=0.1 />
             </div>
         </div>
     </Modal>
