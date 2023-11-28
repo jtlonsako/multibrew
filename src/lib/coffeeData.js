@@ -128,4 +128,66 @@ export const coffeeData = [
         ],
         operation: "mult"
     },
+    {
+        name: "French Press",
+        route: "press",
+        selectionLists: [
+            {
+                name: "Strength",
+                levels:[
+                    {
+                        Title: "Light",
+                        Description: "1:18",
+                        Value: 18
+                    },
+                    {
+                        Title: "Normal",
+                        Description: "1:17",
+                        Value: 17
+                    },
+                    {
+                        Title: "Strong",
+                        Description: "1:15",
+                        Value: 15
+                    }
+                ],
+                levelDescription:
+                {
+                    prestring: "1:",
+                    poststring: "",
+                    min:2,
+                    max:25,
+                    defaultCustomValue: 12
+                }            },
+            {
+                name: "Size",
+                levels: [
+                    {
+                        Title: "Small",
+                        Description: "250ml",
+                        Value: 250
+                    },
+                    {
+                        Title: "Medium",
+                        Description: "500ml",
+                        Value: 500
+                    },
+                    {
+                        Title: "Large",
+                        Description: "800ml",
+                        Value: 800
+                    }
+                ],
+                levelDescription:
+                {
+                    prestring: "",
+                    poststring: "ml",
+                    min:100,
+                    max:2000,
+                    defaultCustomValue: 1000
+                }
+            }   
+        ],
+        operation: "div"
+    },
 ]
