@@ -1,119 +1,42 @@
-<script context="module" lang="ts">
-	let onTop   //keeping track of which open modal is on top
-	const modals={}  //all modals get registered here for easy future access
-	
-	// 	returns an object for the modal specified by `id`, which contains the API functions (`open` and `close` )
-	export function getModal(id=''){
-		return modals[id]
+<script>
+	import { fade } from "svelte/transition";
+
+	let {open} = $props()
+
+	function closeModal() {
+		open = false
 	}
+
+	const clickOutside = (element) => {
+		function handleClick(event) {
+			const targetElement = event.target
+
+			if(element && !element.contains(targetElement)) {
+				const clickOutsideEvent = new CustomEvent('outside')
+				element.dispatchEvent(clickOutsideEvent)
+			}
+		}
+
+		document.addEventListener('click', handleClick, true)
+
+		return {
+			destroy() {
+				document.removeEventListener('click', handleClick, true)
+			}
+		}
+	}
+
 </script>
 
-<script lang="ts">
-import {onDestroy} from 'svelte'
-	
-let topDiv
-let visible=false
-let prevOnTop
-let closeCallback
-
-export let id=''
-
-function keyPress(ev){
-	//only respond if the current modal is the top one
-	if(ev.key=="Escape" && onTop==topDiv) close() //ESC
-}
-
-/**  API **/
-function open(callback){
-	closeCallback=callback
-	if(visible) return
-	prevOnTop=onTop
-	onTop=topDiv
-	window.addEventListener("keydown",keyPress)
-	
-	//this prevents scrolling of the main window on larger screens
-	document.body.style.overflow="hidden" 
-
-	visible=true
-	//Move the modal in the DOM to be the last child of <BODY> so that it can be on top of everything
-	document.body.appendChild(topDiv)
-}
-	
-function close(retVal){
-	if(!visible) return
-	window.removeEventListener("keydown",keyPress)
-	onTop=prevOnTop
-	if(onTop==null) document.body.style.overflow=""
-	visible=false
-	if(closeCallback) closeCallback(retVal)
-}
-	
-//expose the API
-modals[id]={open,close}
-	
-onDestroy(()=>{
-	delete modals[id]
-	window.removeEventListener("keydown",keyPress)
-})
-	
-</script>
-
-<div id="topModal" class:visible class="bg-zinc-900" bind:this={topDiv} on:click={() => close()}>
-	<div id='modal' on:click|stopPropagation={()=>{}}>
-		<svg id="close" on:click={()=>close()} viewBox="0 0 12 12">
-			<line x1=3 y1=3 x2=9 y2=9 />
-			<line x1=9 y1=3 x2=3 y2=9 />
-		</svg>
-		<div id='modal-content'>
-			<slot></slot>
+<div class="absolute h-screen w-screen grid place-items-center -my-24 items-center bg-zinc-900 bg-opacity-80">
+	{#if open}
+		<div
+			on:outside={closeModal}
+			use:clickOutside
+			transition:fade
+			class="grid w-5/6 md:w-3/12 rounded-lg pt-8 pb-10 z-10 place-items-center bg-opacity-100 bg-zinc-600"
+		>
+			<slot />
 		</div>
-	</div>
+	{/if}
 </div>
-
-<style>
-	#topModal {
-		visibility: hidden;
-		z-index: 9999;
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0; 
-		bottom: 0;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-	#modal {
-		position: relative;
-		border-radius: 6px;
-		background: white;
-        border: 1px solid #000;
-		filter: drop-shadow(5px 5px 5px #555);
-		padding: 1em;
-	}
-
-	.visible {
-		visibility: visible !important;
-	}
-
-	#close {
-		position: absolute;
-		top:0px;
-		right:0px;
-		width:24px;
-		height:24px;
-		cursor: pointer;
-		fill:#F44;
-		transition: transform 0.3s;
-	}	
-
-	#close line {
-		stroke: black;
-		stroke-width:1;
-	}
-	#modal-content {
-		max-width: calc(100vw - 20px);
-		max-height: calc(100vh - 20px);
-		overflow: auto;
-	}
-</style>

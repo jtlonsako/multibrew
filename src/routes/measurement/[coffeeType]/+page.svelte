@@ -12,13 +12,13 @@
 
     let totalCoffeeGrounds = $derived(
         operation == "div" ?
-        Math.floor(selectionVars[1] / selectionVars[0])
+        (selectionVars[1] / selectionVars[0]).toFixed(1)
         : selectionVars[1]
     )
 
     let totalWaterAmount = $derived(
         operation == "mult" ?
-        selectionVars[1] * selectionVars[0]
+        (selectionVars[1] * selectionVars[0]).toFixed(1)
         : selectionVars[1]
     )
 
@@ -29,6 +29,7 @@
             selectorName={itemList.name}
             selectorLevels={itemList.levels}
             bind:selectedLevelValue={selectionVars[i]}
+            selectorLevelDescription={itemList.levelDescription}
         />
     {/each}
 </div>

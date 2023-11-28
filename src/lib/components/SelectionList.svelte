@@ -1,27 +1,32 @@
 <script>
     import { SubstringTypes } from "$lib/enums";
-	import Modal, { getModal } from "./Modal.svelte";
+	import Modal from "./Modal.svelte";
     let {
-            selectorName, selectorLevels, selectedLevelValue
+            selectorName, selectorLevels, selectedLevelValue, selectorLevelDescription
         } = $props()
 
-    let customButton = {
+    let customValue = $state(selectorLevelDescription.defaultCustomValue)
+
+    let customButton = $derived({
         Title: "Custom",
-        Description: "x",
-        Value: 100
-    }
+        Description: selectorLevelDescription.prestring + customValue + selectorLevelDescription.poststring,
+        Value: customValue
+    })
 
-    let emptyButton = {
-        Title: "N/A"
-    }
+    let modalOpen = $state(false)
 
-    let fullButtonArray = [...selectorLevels, customButton]
+    let fullButtonArray = $derived([...selectorLevels, customButton])
     let displayedButtonArray = $state([...selectorLevels])
+
+    const updateCustomButton = () => {
+        displayedButtonArray[displayedButtonArray.length - 1] = customButton
+        selectedLevelValue = customValue
+    }
 
     const updateCalculatedValues = (i) => {
         if (selectedLevelValue == displayedButtonArray[i].Value) {
             if (selectedLevelValue == fullButtonArray[fullButtonArray.length - 1].Value){
-                getModal().open()
+                modalOpen = true
             }
         }
         else {
@@ -30,7 +35,6 @@
             {
                 selectedLevelValue = displayedButtonArray[i].Value
                 displayedButtonArray.pop()
-                displayedButtonArray = displayedButtonArray
             }
             else if(fullButtonArray.findIndex((level) => level.Title == displayedButtonArray[i].Title) == fullButtonArray.length - 1)
             {
@@ -75,7 +79,21 @@
         {/each}
     </div>
 </div>
+{#if modalOpen}
+    <Modal
+    bind:open={modalOpen}
+    >
+        <!-- Implement custom modal input selection stuff here -->
+        <div class="rounded-lg text-slate-100">
+            <div class="w-full grid grid-cols-1 place-items-center justify-items-center">
+                <p class="text-base font-thin text-center mb-1">Select {selectorName}</p>
+                <hr class="w-48 h-0 mx-auto opacity-30 rounded">
 
-<Modal>
-    <p>Complete logic for custom value input here. Press 'esc' to exit</p>
-</Modal>
+                <div class="flex flex-row mt-4 text-5xl justify-center">
+                    {selectorLevelDescription.prestring}{customValue}{selectorLevelDescription.poststring}
+                </div>
+                <input type="range" on:change={updateCustomButton} bind:value={customValue} min={selectorLevelDescription.min} max={selectorLevelDescription.max} step=0.1 />
+            </div>
+        </div>
+    </Modal>
+{/if}
