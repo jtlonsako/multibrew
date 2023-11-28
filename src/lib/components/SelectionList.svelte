@@ -18,6 +18,8 @@
     let fullButtonArray = $derived([...selectorLevels, customButton])
     let displayedButtonArray = $state([...selectorLevels])
 
+    //This function is absurdley broken because it assumes the value to be updated is the last button being displayed. While that's true in
+    //my use case, this isn't generalized enough to work if I want to be able to update all values in the future.
     const updateCustomButton = () => {
         displayedButtonArray[displayedButtonArray.length - 1] = customButton
         selectedLevelValue = customValue
