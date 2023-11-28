@@ -29,6 +29,7 @@
             selectorName={itemList.name}
             selectorLevels={itemList.levels}
             bind:selectedLevelValue={selectionVars[i]}
+            selectorLevelDescription={itemList.levelDescription}
         />
     {/each}
 </div>

@@ -23,7 +23,12 @@ export const coffeeData = [
                         Description: "1:15",
                         Value: 15
                     }
-                ]
+                ],
+                levelDescription:
+                {
+                    prestring: "1:",
+                    poststring: ""
+                }
             },
             {
                 name: "Size",
@@ -43,7 +48,12 @@ export const coffeeData = [
                         Description: "Grande",
                         Value: 424
                 }
-                ]
+                ],
+                levelDescription:
+                {
+                    prestring: "",
+                    poststring: "ml"
+                }
             }
         ],
         operation: "div"
