@@ -57,7 +57,7 @@ export const coffeeData = [
                     prestring: "",
                     poststring: "ml",
                     min:25,
-                    max:5000,
+                    max:2000,
                     defaultCustomValue: 500
                 }
             }
@@ -183,7 +183,7 @@ export const coffeeData = [
                     prestring: "",
                     poststring: "ml",
                     min:100,
-                    max:2000,
+                    max:5000,
                     defaultCustomValue: 1000
                 }
             }   
