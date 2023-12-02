@@ -8,7 +8,7 @@
         const transform = style.transform === 'none' ? '' : style.transform
 
         return {
-            duration:100,
+            duration:120,
             easing: quintOut,
             css: (t) => `
                 opacity: ${t};
@@ -75,7 +75,7 @@
 
 </script>
 
-<div id="Container" class="text-slate-100 mb-14 w-full">
+<div id="Container" class="text-slate-100 mb-14 w-full bg-white">
     <p class="text-base font-thin text-center mb-1">{selectorName}</p>
     <hr class="w-48 h-0 mx-auto opacity-30 rounded">
 
@@ -100,7 +100,7 @@
         {/each} -->
 
         <!--Create three divs, which will each potentially be holding a button from fullArray-->
-        <div class="w-32 h-10 m-3 grid grid-cols-2 place-items-center">
+        <div class="w-32 h-10 m-3 grid grid-cols-1 place-items-center">
             {#each fullButtonArray.filter((button) => button["Index"] == 0) as button (button)}
                 <button 
                 animate:fade
@@ -121,14 +121,14 @@
             {/each}
         </div>
 
-        <div class="w-32 h-10 m-3 grid grid-cols-2 place-items-center">
+        <div class="w-32 h-10 m-3 grid grid-cols-1 place-items-center">
             {#each fullButtonArray.filter((button) => button["Index"] == 1) as button (button)}
                 <button
                 in:receive={{key: button.Title}}
                 out:send={{key: button.Title}}
                 id={button.Title} 
                 on:click={mainButtonSelect} 
-                class="px-10 w-1/3 font-extralight text-3xl mt-4 grid grid-cols-1 justify-items-center"
+                class="px-10 w-1/3 font-extralight transition-all text-3xl mt-4 grid grid-cols-1 justify-items-center"
                 >
 
                         <p class="font-serif tracking-wide">
@@ -142,14 +142,14 @@
             {/each}
         </div>
 
-        <div class="w-32 h-10 m-3 grid grid-cols-2 place-items-center">
+        <div class="w-32 h-10 m-3 grid grid-cols-1 place-items-center">
             {#each fullButtonArray.filter((button) => button["Index"] == 2) as button (button)}
                 <button 
                 in:receive={{key: button.Title}}
                 out:send={{key: button.Title}}
                 id={button.Title} 
                 on:click={moveButtonsLeft} 
-                class="px-10 w-1/3 font-extralight text-3xl text-zinc-500 mt-4 grid grid-cols-1 justify-items-center"
+                class="px-10 w-1/3 font-extralight transition-all text-3xl text-zinc-500 mt-4 grid grid-cols-1 justify-items-center"
                 >
 
                         <p class="font-serif tracking-wide">
