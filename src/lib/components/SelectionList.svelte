@@ -1,7 +1,7 @@
 <script>
-    import Modal from "./Modal.svelte";
 	import { flip } from "svelte/animate";
-	import { quintIn, quintOut } from "svelte/easing";
+    import Modal from "./Modal.svelte";
+	import { quintOut } from "svelte/easing";
     import {crossfade, fade, fly} from 'svelte/transition';
 	const [send, receive] = crossfade({fallback(node) {
         const style = getComputedStyle(node)
@@ -48,7 +48,7 @@
     }
     
     const moveButtonsRight = () => {
-        allButtons = fullButtonArray.map((button, index) => {
+        allButtons = fullButtonArray.map((button) => {
             button["Index"]++
             return button
         })
@@ -58,11 +58,12 @@
     }
 
     const moveButtonsLeft = () => {
-        allButtons = fullButtonArray.map((button, index) => {
+        allButtons = fullButtonArray.map((button) => {
             button["Index"]--
             return button
         })
 
+        console.log("Left Function: " + (allButtons.filter((button) => button["Index"] == 2).length >= 1).toString())
         selectedLevelValue = fullButtonArray.filter((button) => button.Index == 1)[0].Value
         fullButtonArray = allButtons
     }
@@ -73,9 +74,15 @@
         }
     }
 
+    const buttonToRender = (id) => {
+        let buttonToRender = fullButtonArray.filter((button) => button["Index"] == id)
+        if(buttonToRender.length == 1) return buttonToRender[0]
+        return false
+    }
+
 </script>
 
-<div id="Container" class="text-slate-100 mb-14 w-full bg-white">
+<div id="Container" class="text-slate-100 mb-14 w-full">
     <p class="text-base font-thin text-center mb-1">{selectorName}</p>
     <hr class="w-48 h-0 mx-auto opacity-30 rounded">
 
@@ -100,70 +107,62 @@
         {/each} -->
 
         <!--Create three divs, which will each potentially be holding a button from fullArray-->
-        <div class="w-32 h-10 m-3 grid grid-cols-1 place-items-center">
-            {#each fullButtonArray.filter((button) => button["Index"] == 0) as button (button)}
+            {#if buttonToRender(0)}
                 <button 
-                animate:fade
-                in:receive={{key: button.Title}}
-                out:send={{key: button.Title}}
-                id={button.Title} 
+                in:fade
+                out:fly={{x:-10, duration:50}}
+                id={buttonToRender(0).Title}
                 on:click={moveButtonsRight} 
-                class="px-10 w-1/3 font-extralight text-3xl text-zinc-500 mt-4 grid grid-cols-1 justify-items-center"
+                class="px-10 w-1/3 font-extralight text-3xl text-zinc-500 mt-4 grid justify-items-center"
                 >
                         <p class="font-serif tracking-wide">
-                            {button.Title}
+                            {buttonToRender(0).Title}
                         </p>
                         <p class="font-thin text-base italic mt-0">
-                            {button.Description}
-                        </p>
-
-                </button>            
-            {/each}
-        </div>
-
-        <div class="w-32 h-10 m-3 grid grid-cols-1 place-items-center">
-            {#each fullButtonArray.filter((button) => button["Index"] == 1) as button (button)}
-                <button
-                in:receive={{key: button.Title}}
-                out:send={{key: button.Title}}
-                id={button.Title} 
-                on:click={mainButtonSelect} 
-                class="px-10 w-1/3 font-extralight transition-all text-3xl mt-4 grid grid-cols-1 justify-items-center"
-                >
-
-                        <p class="font-serif tracking-wide">
-                            {button.Title}
-                        </p>
-                        <p class="font-thin text-base italic -mt-1">
-                            {button.Description}
-                        </p>
-
-                </button>               
-            {/each}
-        </div>
-
-        <div class="w-32 h-10 m-3 grid grid-cols-1 place-items-center">
-            {#each fullButtonArray.filter((button) => button["Index"] == 2) as button (button)}
-                <button 
-                in:receive={{key: button.Title}}
-                out:send={{key: button.Title}}
-                id={button.Title} 
-                on:click={moveButtonsLeft} 
-                class="px-10 w-1/3 font-extralight transition-all text-3xl text-zinc-500 mt-4 grid grid-cols-1 justify-items-center"
-                >
-
-                        <p class="font-serif tracking-wide">
-                            {button.Title}
-                        </p>
-                        <p class="font-thin text-base italic mt-0">
-                            {button.Description}
+                            {buttonToRender(0).Description}
                         </p>
 
                 </button>   
-            {/each}
-        </div>
+            {/if}
+         
+            {#if buttonToRender(1)}
+                <button
+                id={buttonToRender(1).Title}
+                on:click={mainButtonSelect} 
+                class="px-10 w-1/3 font-extralight text-3xl mt-4 grid justify-items-center"
+                >
+
+                        <p class="font-serif tracking-wide">
+                            {buttonToRender(1).Title}
+                        </p>
+                        <p class="font-thin text-base italic -mt-1">
+                            {buttonToRender(1).Description}
+                        </p>
+
+                </button>     
+            {/if}          
+
+            {#if buttonToRender(2)}
+                <button
+                in:fade
+                out:fly={{x:10, duration:50}}
+                id={buttonToRender(2).Title}
+                on:click={moveButtonsLeft} 
+                class="px-10 w-1/3 font-extralight text-3xl text-zinc-500 mt-4 grid justify-items-center"
+                >
+
+                        <p class="font-serif tracking-wide">
+                            {buttonToRender(2).Title}
+                        </p>
+                        <p class="font-thin text-base italic mt-0">
+                            {buttonToRender(2).Description}
+                        </p>
+
+                </button>   
+            {/if}
     </div>
 </div>
+
 {#if modalOpen}
     <Modal
     bind:open={modalOpen}

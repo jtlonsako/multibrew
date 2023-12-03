@@ -1,18 +1,44 @@
 <script>
-	import { quintInOut } from "svelte/easing";
-	import { fade, fly } from "svelte/transition";
+	import { scale } from "svelte/transition";
+	import { flip } from "svelte/animate";
 
+    let list = $state(['One', 'Two', 'Three', 'Four', 'Five'])
+    let removedList = $state([])
 
-    let value = $state(0)
-    let stringArray = ['One', 'Two', 'Three', 'Four']
-    let adding = $state(true)
+    let listRemovedDisabled = $derived(list.length <= 0)
+    let listAddDisabled = $derived(removedList.length <= 0)
+
+    const addButtons = () => {
+        list = [...list, removedList.shift()]
+        removedList = [...removedList]
+    }
+
+    const removeButtons = () => {
+        const middleItem = list[list.length % 2]
+        let lastNumber = list.filter((item) => item != middleItem)
+        removedList.push(middleItem)
+        list = [...lastNumber]
+        removedList = [...removedList]
+    }
 
 </script>
 
-<div class="h-screen w-screen flex flex-row place-items-center text-slate-100 justify-around text-5xl">
-    <button on:click={() => {--value; adding = false}} disabled={value == 0} class="p-20 {value == 0 ? 'text-zinc-500' : 'hover:bg-zinc-600'} rounded-lg">-</button>
-    {#key value}
-        <p in:fly={{x:adding ? 50 : -50, y:50, opacity:0}} out:fly={{x:adding ? -50 : 50, y:50, opacity:0, duration:350, easing:quintInOut}} class="absolute">{stringArray[value]}</p>
-    {/key}
-    <button on:click={() =>{ ++value; adding = true}} disabled={value == stringArray.length - 1} class="p-20 {value == 3 ? 'text-zinc-500' : 'hover:bg-zinc-600'} rounded-lg">+</button>
+<div class="flex flex-row justify-between">
+    <button class="px-10 mx-10 my-40 bg-zinc-500 text-xl rounded-xl" 
+        disabled={listRemovedDisabled} on:click={removeButtons}>
+        -
+    </button>
+
+    <button class="px-10 mx-10 my-40 bg-zinc-500 text-xl rounded-xl" 
+        disabled={listAddDisabled} on:click={addButtons}>
+        +
+    </button>
+</div>
+
+<div class="flex flex-row place-items-center text-slate-100 justify-around text-5xl">
+    {#each list as item (item)}
+        <div class="w-30 h-10 text-2xl mx-5 px-5 bg-green-400 rounded-xl" transition:scale animate:flip>
+            <p>{item}</p>
+        </div>
+    {/each}
 </div>
