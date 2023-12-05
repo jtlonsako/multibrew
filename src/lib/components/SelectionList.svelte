@@ -40,7 +40,6 @@
         button["Index"] = index; 
         return button
     }))
-    let displayedButtonArray = $state([...selectorLevels])
 
     const updateCustomButton = () => {
         let currentCustomButton = fullButtonArray.filter((button) => button["Title"] == "Custom")[0]
@@ -74,6 +73,30 @@
     const mainButtonSelect = () => {
         if(fullButtonArray.filter((button) => button.Index == 1)[0].Title == "Custom") {
             modalOpen = true
+        }
+    }
+
+    const customValueSubtract = () => {
+        if(customValue > selectorLevelDescription.min) {
+            if(customValue - 1 < selectorLevelDescription.min) {
+                customValue = selectorLevelDescription.min
+                updateCustomButton()
+                return
+            }
+            customValue -= 1
+            updateCustomButton()
+        }
+    }
+
+    const customValueAdd = () => {
+        if(customValue < selectorLevelDescription.max) {
+            if(customValue + 1 > selectorLevelDescription.max) {
+                customValue = selectorLevelDescription.max
+                updateCustomButton()
+                return
+            }
+            customValue += 1
+            updateCustomButton()
         }
     }
 
@@ -167,18 +190,18 @@
     >
     <div class="rounded-lg w-full h-fit text-slate-100">
         <div class="flex justify-start align-top -mt-7 ml-4">
-            <button class="text-2xl font-extralight text-zinc-300" on:click={() => modalOpen = false}>X</button>
+            <button class="text-2xl font-extralight text-zinc-300 hover:text-zinc-100" on:click={() => modalOpen = false}>X</button>
         </div>
             <div class="w-full grid grid-cols-1 place-items-center justify-items-center">
                 <p class="text-base font-normal text-center -mt-3 mb-1">Select {selectorName}</p>
                 <hr class="w-48 h-0 mx-auto opacity-30 rounded">
 
                 <div class="flex flex-row">
-                    <button on:click={() => Math.floor(customValue -= 1)} class="font-extralight mr-10 text-5xl">-</button>
+                    <button on:click={customValueSubtract} disabled={customValue <= selectorLevelDescription.min} class="font-extralight {customValue <= selectorLevelDescription.min ? "text-zinc-400" : ""} mr-10 text-5xl">-</button>
                     <div class="flex flex-row mt-3 mb-4 px-5 text-5xl font-normal justify-center rounded-sm bg-zinc-800">
                         {selectorLevelDescription.prestring}{customValue}{selectorLevelDescription.poststring}
                     </div>
-                    <button on:click={() => Math.floor(customValue+= 1)} class="font-extralight ml-10 text-5xl">+</button>
+                    <button on:click={customValueAdd} disabled={customValue >= selectorLevelDescription.max} class="font-extralight {customValue >= selectorLevelDescription.max ? "text-zinc-400" : ""} ml-10 text-5xl">+</button>
                 </div>
                 <div class="flex flex-row">
                     <p class="font-extralight text-base mx-4 font-serif">{selectorLevelDescription.min}</p>
