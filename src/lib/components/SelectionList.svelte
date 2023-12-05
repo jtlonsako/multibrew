@@ -84,8 +84,10 @@
     <Modal
     bind:open={modalOpen}
     >
-        <!-- Implement custom modal input selection stuff here -->
-        <div class="rounded-lg text-slate-100">
+    <div class="rounded-lg w-full h-fit text-slate-100">
+        <div class="flex justify-start align-top -mt-7 ml-4">
+            <button class="text-2xl font-extralight text-zinc-300" on:click={() => modalOpen = false}>X</button>
+        </div>
             <div class="w-full grid grid-cols-1 place-items-center justify-items-center">
                 <p class="text-base font-thin text-center mb-1">Select {selectorName}</p>
                 <hr class="w-48 h-0 mx-auto opacity-30 rounded">
