@@ -1,3 +1,4 @@
+import CoffeeBeanIcon from "./components/icons/CoffeeBeanIcon.svelte";
 import { SubstringTypes } from "./enums"
 
 export const coffeeData = [
@@ -7,62 +8,105 @@ export const coffeeData = [
         selectionLists: [
             {
                 name: "Strength",
-                levels: [
-                    {
-                        Title: "Light",
-                        Description: "1:18",
-                        Value: 18
-                    },
-                    {
-                        Title: "Normal",
-                        Description: "1:16",
-                        Value: 16
-                    },
-                    {
-                        Title: "Strong",
-                        Description: "1:15",
-                        Value: 15
-                    }
-                ],
+                levels: 
+                {
+                    gram_gram :
+                    [
+                        {
+                            Title: "Light",
+                            Description: "1:18",
+                            Value: 18
+                        },
+                        {
+                            Title: "Normal",
+                            Description: "1:16",
+                            Value: 16
+                        },
+                        {
+                            Title: "Strong",
+                            Description: "1:15",
+                            Value: 15
+                        }
+                    ]
+                },
                 levelDescription:
                 {
                     prestring: "1:",
                     poststring: "",
                     min:2,
                     max:25,
-                    defaultCustomValue: 12
-                }
+                    defaultCustomValue: 12,
+                    buttons: []
+                },
+                defaultPicker: "gram_gram"
             },
             {
                 name: "Size",
-                levels: [
-                    {
-                        Title: "227ml",
-                        Description: "Short",
-                        Value: 227
-                    },
-                    {
-                        Title: "320ml",
-                        Description: "Tall",
-                        Value: 320
-                    },
-                    {
-                        Title: "424ml",
-                        Description: "Grande",
-                        Value: 424
-                }
-                ],
+                levels: 
+                {
+                    water:
+                        [
+                            {
+                                Title: "227ml",
+                                Description: "Short",
+                                Value: 227
+                            },
+                            {
+                                Title: "320ml",
+                                Description: "Tall",
+                                Value: 320
+                            },
+                            {
+                                Title: "424ml",
+                                Description: "Grande",
+                                Value: 424
+                            }
+                        ],
+                        
+                    coffee:
+                        [
+                            {
+                                Title: "15g",
+                                Description: "Short",
+                                Value: 15
+                            },
+                            {
+                                Title: "20g",
+                                Description: "Medium",
+                                Value: 20
+                            },
+                            {
+                                Title: "30g",
+                                Description: "Large",
+                                Value: 30
+                            }
+                        ]
+                },
+
                 levelDescription:
                 {
                     prestring: "",
                     poststring: "ml",
                     min:25,
                     max:2000,
-                    defaultCustomValue: 500
-                }
+                    defaultCustomValue: 500,
+                    buttons: ["water", "coffee"]
+                },
+                defaultPicker: "water"
             }
         ],
-        operation: "div"
+        operation: function (selectedStrengthLevel, selectedSizeLevel, selectionSizeType) {
+            let [totalCoffeeAmount, totalWaterAmount] = [0, 0]
+            if(selectionSizeType === "water") {
+                totalWaterAmount = selectedSizeLevel
+                totalCoffeeAmount = (totalWaterAmount / selectedStrengthLevel).toFixed(1);
+            } else if(selectionSizeType === "coffee") {
+                totalCoffeeAmount = selectedSizeLevel
+                totalWaterAmount = (totalCoffeeAmount * selectedStrengthLevel).toFixed(1);
+            }
+
+            return [totalCoffeeAmount, totalWaterAmount]
+        }
     },
 
     {
@@ -71,8 +115,10 @@ export const coffeeData = [
         selectionLists: [
             {
                 name: "Strength",
-                levels:[
-
+                levels:
+                {
+                    gram_gram: 
+                    [
                     {
                         Title: "Light",
                         Description: "1:7",
@@ -88,7 +134,8 @@ export const coffeeData = [
                         Description: "1:9",
                         Value: 9
                     }
-                ],
+                ]
+            },
                 levelDescription:
                 {
                     prestring: "1:",
@@ -96,10 +143,14 @@ export const coffeeData = [
                     min:2,
                     max:20,
                     defaultCustomValue: 5
-                }            },
+                },
+                defaultPicker: "gram_gram"
+           
+            },
             {
                 name: "Size",
-                levels: [
+                levels: {
+                    water: [
                     {
                         Title: "Small",
                         Description: "12g",
@@ -115,7 +166,7 @@ export const coffeeData = [
                         Description: "16g",
                         Value: 16
                     }
-                ],
+                ]},
                 levelDescription:
                 {
                     prestring: "",
@@ -123,10 +174,22 @@ export const coffeeData = [
                     min:1,
                     max:50,
                     defaultCustomValue: 18
-                }
+                },
+                defaultPicker: "water"
             }   
         ],
-        operation: "mult"
+        operation: function (selectedStrengthLevel, selectedSizeLevel, selectionSizeType) {
+            let [totalCoffeeAmount, totalWaterAmount] = [0, 0]
+            if(selectionSizeType === "water") {
+                totalWaterAmount = selectedSizeLevel
+                totalCoffeeAmount = (totalWaterAmount / selectedStrengthLevel).toFixed(1);
+            } else if(selectionSizeType === "coffee") {
+                totalCoffeeAmount = selectedSizeLevel
+                totalWaterAmount = (totalCoffeeAmount * selectedStrengthLevel).toFixed(1);
+            }
+
+            return [totalCoffeeAmount, totalWaterAmount]
+        }
     },
     {
         name: "French Press",
@@ -134,7 +197,8 @@ export const coffeeData = [
         selectionLists: [
             {
                 name: "Strength",
-                levels:[
+                levels:{
+                    gram_gram: [
                     {
                         Title: "Light",
                         Description: "1:18",
@@ -150,7 +214,7 @@ export const coffeeData = [
                         Description: "1:15",
                         Value: 15
                     }
-                ],
+                ]},
                 levelDescription:
                 {
                     prestring: "1:",
@@ -158,10 +222,13 @@ export const coffeeData = [
                     min:2,
                     max:25,
                     defaultCustomValue: 12
-                }            },
+                },
+                defaultPicker: "gram_gram"          
+            },
             {
                 name: "Size",
-                levels: [
+                levels: {
+                    water: [
                     {
                         Title: "Small",
                         Description: "250ml",
@@ -177,7 +244,7 @@ export const coffeeData = [
                         Description: "800ml",
                         Value: 800
                     }
-                ],
+                ]},
                 levelDescription:
                 {
                     prestring: "",
@@ -185,9 +252,21 @@ export const coffeeData = [
                     min:100,
                     max:5000,
                     defaultCustomValue: 1000
-                }
+                },
+                defaultPicker: "water"
             }   
         ],
-        operation: "div"
+        operation: function (selectedStrengthLevel, selectedSizeLevel, selectionSizeType) {
+            let [totalCoffeeAmount, totalWaterAmount] = [0, 0]
+            if(selectionSizeType === "water") {
+                totalWaterAmount = selectedSizeLevel
+                totalCoffeeAmount = (totalWaterAmount / selectedStrengthLevel).toFixed(1);
+            } else if(selectionSizeType === "coffee") {
+                totalCoffeeAmount = selectedSizeLevel
+                totalWaterAmount = (totalCoffeeAmount * selectedStrengthLevel).toFixed(1);
+            }
+
+            return [totalCoffeeAmount, totalWaterAmount]
+        }
     },
 ]
