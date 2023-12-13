@@ -1,7 +1,7 @@
 <script>
     export const displaySize = "medium"
 
-    const sizeParams = 
+    const sizeParams =
     {
         small: {
             width: 13,
@@ -9,8 +9,8 @@
         },
 
         medium: {
-            width: 30,
-            height: 30
+            width: 25,
+            height: 25
         }
     }
 </script>

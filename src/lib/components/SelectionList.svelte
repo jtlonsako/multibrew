@@ -1,22 +1,28 @@
 <script>
     import Modal from "./Modal.svelte";
 	import SelectorIconDisplay from "./SelectorIconDisplay.svelte";
+    import {createEventDispatcher} from "svelte";
+
+    let dispatch = createEventDispatcher();
     
     let {
             selectorName, 
             selectorLevels, 
             selectedLevelValue, 
             selectorLevelDescription,
-            defaultPicker
+            selectionListType
         } = $props()
 
-        console.log(selectorLevelDescription)
+    const CUSTOM_BUTTON_MIN = selectorLevelDescription.customButtonInfo[selectionListType].min
+    const CUSTOM_BUTTON_MAX = selectorLevelDescription.customButtonInfo[selectionListType].max
+    const CUSTOM_BUTTON_PRESTRING = selectorLevelDescription.customButtonInfo[selectionListType].prestring
+    const CUSTOM_BUTTON_POSTSTRING = selectorLevelDescription.customButtonInfo[selectionListType].poststring
 
-    let customValue = $state(selectorLevelDescription.defaultCustomValue)
+    let customValue = $state(selectorLevelDescription.customButtonInfo[selectionListType].defaultCustomValue)
 
     let customButton = $derived({
         Title: "Custom",
-        Description: selectorLevelDescription.prestring + customValue + selectorLevelDescription.poststring,
+        Description: CUSTOM_BUTTON_PRESTRING + customValue + CUSTOM_BUTTON_POSTSTRING,
         Value: customValue
     })
 
@@ -36,7 +42,7 @@
     const updateCustomButton = () => {
         let currentCustomButton = fullButtonArray.filter((button) => button["Title"] == "Custom")[0]
         currentCustomButton.Value = customValue
-        currentCustomButton.Description = selectorLevelDescription.prestring + customValue + selectorLevelDescription.poststring
+        currentCustomButton.Description = CUSTOM_BUTTON_PRESTRING + customValue + CUSTOM_BUTTON_POSTSTRING
 
         selectedLevelValue = customValue
         fullButtonArray = fullButtonArray
@@ -69,9 +75,9 @@
     }
 
     const customValueSubtract = () => {
-        if(customValue > selectorLevelDescription.min) {
-            if(customValue - 1 < selectorLevelDescription.min) {
-                customValue = selectorLevelDescription.min
+        if(customValue > CUSTOM_BUTTON_MIN) {
+            if(customValue - 1 < CUSTOM_BUTTON_MIN) {
+                customValue = CUSTOM_BUTTON_MIN
                 updateCustomButton()
                 return
             }
@@ -81,9 +87,9 @@
     }
 
     const customValueAdd = () => {
-        if(customValue < selectorLevelDescription.max) {
-            if(customValue + 1 > selectorLevelDescription.max) {
-                customValue = selectorLevelDescription.max
+        if(customValue < CUSTOM_BUTTON_MAX) {
+            if(customValue + 1 > CUSTOM_BUTTON_MAX) {
+                customValue = CUSTOM_BUTTON_MAX
                 updateCustomButton()
                 return
             }
@@ -95,13 +101,20 @@
 </script>
 
 <div id="Container" class="text-slate-100 mb-14 w-full">
-    <div class="flex flex-row">
-        <p class="text-base font-thin text-center mb-1">{selectorName}</p>
-        {#each selectorLevelDescription.buttons as buttonName}
-            <SelectorIconDisplay buttonName={buttonName} />
+    <div class="grid grid-cols-12">
+        <p class="text-base col-start-6 col-span-2 font-thin text-center mb-1">{selectorName}</p>
+        {#each selectorLevelDescription.buttons as buttonName, i}
+            <div class="col-start-{i + 1 + 7}">
+                <button on:click={() => {
+                    selectionListType = buttonName;
+                    dispatch("SwitchSelectionType", buttonName)
+                    }}>
+                    <SelectorIconDisplay buttonName={buttonName} currentSelectionType={selectionListType} />
+                </button>
+            </div>
         {/each}
     </div>
-    <hr class="w-48 h-0 mx-auto opacity-30 rounded">
+    <hr class=" w-56 h-0 mx-auto opacity-30 rounded">
 
     <div id="LevelContainer" class="flex flex-row mt-4 text-xl">
 
@@ -176,17 +189,17 @@
                 <hr class="w-48 h-0 mx-auto opacity-30 rounded">
 
                 <div class="flex flex-row">
-                    <button on:click={customValueSubtract} disabled={customValue <= selectorLevelDescription.min} class="font-extralight {customValue <= selectorLevelDescription.min ? "text-zinc-400" : ""} mr-10 text-5xl">-</button>
+                    <button on:click={customValueSubtract} disabled={customValue <= CUSTOM_BUTTON_MIN} class="font-extralight {customValue <= CUSTOM_BUTTON_MIN ? "text-zinc-400" : ""} mr-10 text-5xl">-</button>
                     <div class="flex flex-row mt-3 mb-4 px-5 text-5xl font-normal justify-center rounded-sm bg-zinc-800">
-                        {selectorLevelDescription.prestring}{customValue}{selectorLevelDescription.poststring}
+                        {CUSTOM_BUTTON_PRESTRING}{customValue}{CUSTOM_BUTTON_POSTSTRING}
                     </div>
-                    <button on:click={customValueAdd} disabled={customValue >= selectorLevelDescription.max} class="font-extralight {customValue >= selectorLevelDescription.max ? "text-zinc-400" : ""} ml-10 text-5xl">+</button>
+                    <button on:click={customValueAdd} disabled={customValue >= CUSTOM_BUTTON_MAX} class="font-extralight {customValue >= CUSTOM_BUTTON_MAX ? "text-zinc-400" : ""} ml-10 text-5xl">+</button>
                 </div>
                 <div class="flex flex-row">
-                    <p class="font-extralight text-base mx-4 font-serif">{selectorLevelDescription.min}</p>
+                    <p class="font-extralight text-base mx-4 font-serif">{CUSTOM_BUTTON_MIN}</p>
                     <input type="range" on:change={updateCustomButton} bind:value={customValue}
-                     min={selectorLevelDescription.min} max={selectorLevelDescription.max} step=0.1 />
-                    <p class="font-extralight text-base mx-4 font-serif">{selectorLevelDescription.max}</p>
+                     min={CUSTOM_BUTTON_MIN} max={CUSTOM_BUTTON_MAX} step=0.1 />
+                    <p class="font-extralight text-base mx-4 font-serif">{CUSTOM_BUTTON_MAX}</p>
                 </div>
             </div>
         </div>
