@@ -1,24 +1,16 @@
 <script>
     import Modal from "./Modal.svelte";
-	import { flip } from "svelte/animate";
-	import { quintIn, quintOut } from "svelte/easing";
-    import {crossfade, fade, fly} from 'svelte/transition';
-	const [send, receive] = crossfade({fallback(node) {
-        const style = getComputedStyle(node)
-        const transform = style.transform === 'none' ? '' : style.transform
-
-        return {
-            duration:120,
-            easing: quintOut,
-            css: (t) => `
-                opacity: ${t};
-            `
-        }
-    }});
+	import SelectorIconDisplay from "./SelectorIconDisplay.svelte";
     
     let {
-            selectorName, selectorLevels, selectedLevelValue, selectorLevelDescription
+            selectorName, 
+            selectorLevels, 
+            selectedLevelValue, 
+            selectorLevelDescription,
+            defaultPicker
         } = $props()
+
+        console.log(selectorLevelDescription)
 
     let customValue = $state(selectorLevelDescription.defaultCustomValue)
 
@@ -103,28 +95,15 @@
 </script>
 
 <div id="Container" class="text-slate-100 mb-14 w-full">
-    <p class="text-base font-thin text-center mb-1">{selectorName}</p>
+    <div class="flex flex-row">
+        <p class="text-base font-thin text-center mb-1">{selectorName}</p>
+        {#each selectorLevelDescription.buttons as buttonName}
+            <SelectorIconDisplay buttonName={buttonName} />
+        {/each}
+    </div>
     <hr class="w-48 h-0 mx-auto opacity-30 rounded">
 
     <div id="LevelContainer" class="flex flex-row mt-4 text-xl">
-        <!-- {#each displayedButtonArray as level, i}
-            {#if level.Value == fullButtonArray[0].Value && selectedLevelValue == fullButtonArray[0].Value}
-                <div class=" px-10 w-1/3 grid grid-cols-1 justify-items-center">
-                    
-                </div>
-            {/if}
-            <button id={level.Title} transition:fade={{duration:2000}} on:click={() => updateCalculatedValues(i)} class="px-10 w-1/3 font-extralight transition ease-in-out duration-200 
-                {selectedLevelValue === level.Value ? "scale-150 mt-2": "text-zinc-500 mt-4"} grid grid-cols-1 justify-items-center">
-
-                    <p class="font-serif tracking-wide">
-                        {level.Title}
-                    </p>
-                    <p class="font-thin text-xs italic transition ease-in-out {selectedLevelValue === level ? "-mt-2" : "mt-0"}">
-                        {level.Description}
-                    </p>
-
-            </button>
-        {/each} -->
 
         <!--Create three divs, which will each potentially be holding a button from fullArray-->
         <div class="w-32 h-10 m-3 grid grid-cols-1 place-items-center">

@@ -1,5 +1,5 @@
 <script>
-    export let size = "small"
+    export const size = "small"
 
     const sizeParams = {
         "small": {
