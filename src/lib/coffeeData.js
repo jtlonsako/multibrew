@@ -112,14 +112,14 @@ export const coffeeData = [
                 defaultPicker: "water"
             }
         ],
-        operation: function (selectedStrengthLevel, selectedSizeLevel, selectionSizeType) {
+        operation: function (selectedStrengthValue, selectedSizeValue, selectionSizeType) {
             let [totalCoffeeAmount, totalWaterAmount] = [0, 0]
             if(selectionSizeType === "water") {
-                totalWaterAmount = selectedSizeLevel.toFixed(1)
-                totalCoffeeAmount = (totalWaterAmount / selectedStrengthLevel).toFixed(1);
+                totalWaterAmount = selectedSizeValue.toFixed(1)
+                totalCoffeeAmount = (totalWaterAmount / selectedStrengthValue).toFixed(1);
             } else if(selectionSizeType === "coffee") {
-                totalCoffeeAmount = selectedSizeLevel.toFixed(1)
-                totalWaterAmount = (totalCoffeeAmount * selectedStrengthLevel).toFixed(1);
+                totalCoffeeAmount = selectedSizeValue.toFixed(1)
+                totalWaterAmount = (totalCoffeeAmount * selectedStrengthValue).toFixed(1);
             }
 
             return [totalCoffeeAmount, totalWaterAmount]
@@ -205,14 +205,14 @@ export const coffeeData = [
                 defaultPicker: "coffee"
             }   
         ],
-        operation: function (selectedStrengthLevel, selectedSizeLevel, selectionSizeType) {
+        operation: function (selectedStrengthValue, selectedSizeValue, selectionSizeType) {
             let [totalCoffeeAmount, totalWaterAmount] = [0, 0]
             if(selectionSizeType === "water") {
-                totalWaterAmount = selectedSizeLevel
-                totalCoffeeAmount = (totalWaterAmount / selectedStrengthLevel).toFixed(1);
+                totalWaterAmount = selectedSizeValue.toFixed(1)
+                totalCoffeeAmount = (totalWaterAmount / selectedStrengthValue).toFixed(1);
             } else if(selectionSizeType === "coffee") {
-                totalCoffeeAmount = selectedSizeLevel
-                totalWaterAmount = (totalCoffeeAmount * selectedStrengthLevel).toFixed(1);
+                totalCoffeeAmount = selectedSizeValue.toFixed(1)
+                totalWaterAmount = (totalCoffeeAmount * selectedStrengthValue).toFixed(1);
             }
 
             return [totalCoffeeAmount, totalWaterAmount]
@@ -293,14 +293,14 @@ export const coffeeData = [
                 defaultPicker: "water"
             }   
         ],
-        operation: function (selectedStrengthLevel, selectedSizeLevel, selectionSizeType) {
+        operation: function (selectedStrengthValue, selectedSizeValue, selectionSizeType) {
             let [totalCoffeeAmount, totalWaterAmount] = [0, 0]
             if(selectionSizeType === "water") {
-                totalWaterAmount = selectedSizeLevel
-                totalCoffeeAmount = (totalWaterAmount / selectedStrengthLevel).toFixed(1);
+                totalWaterAmount = selectedSizeValue.toFixed(1)
+                totalCoffeeAmount = (totalWaterAmount / selectedStrengthValue).toFixed(1);
             } else if(selectionSizeType === "coffee") {
-                totalCoffeeAmount = selectedSizeLevel
-                totalWaterAmount = (totalCoffeeAmount * selectedStrengthLevel).toFixed(1);
+                totalCoffeeAmount = selectedSizeValue.toFixed(1)
+                totalWaterAmount = (totalCoffeeAmount * selectedStrengthValue).toFixed(1);
             }
 
             return [totalCoffeeAmount, totalWaterAmount]

@@ -41,8 +41,9 @@
 
     const updateCustomButton = () => {
         let currentCustomButton = fullButtonArray.filter((button) => button["Title"] == "Custom")[0]
+        customValue = customValue
         currentCustomButton.Value = customValue
-        currentCustomButton.Description = CUSTOM_BUTTON_PRESTRING + customValue + CUSTOM_BUTTON_POSTSTRING
+        currentCustomButton.Description = CUSTOM_BUTTON_PRESTRING + customValue.toFixed(1) + CUSTOM_BUTTON_POSTSTRING
 
         selectedLevelValue = customValue
         fullButtonArray = fullButtonArray
@@ -119,7 +120,7 @@
     <div id="LevelContainer" class="flex flex-row mt-4 text-xl">
 
         <!--Create three divs, which will each potentially be holding a button from fullArray-->
-        <div class="w-32 h-10 m-3 grid grid-cols-1 place-items-center">
+        <div class="w-28 h-10 m-3 grid grid-cols-1 place-items-center">
             {#each fullButtonArray.filter((button) => button["Index"] == 0) as button (button)}
                 <button 
                 id={button.Title} 
@@ -137,7 +138,7 @@
             {/each}
         </div>
 
-        <div class="w-32 h-10 m-3 grid grid-cols-1 place-items-center">
+        <div class="w-28 h-10 m-3 grid grid-cols-1 place-items-center">
             {#each fullButtonArray.filter((button) => button["Index"] == 1) as button (button)}
                 <button
                 id={button.Title} 
@@ -156,7 +157,7 @@
             {/each}
         </div>
 
-        <div class="w-32 h-10 m-3 grid grid-cols-1 place-items-center">
+        <div class="w-28 h-10 m-3 grid grid-cols-1 place-items-center">
             {#each fullButtonArray.filter((button) => button["Index"] == 2) as button (button)}
                 <button 
                 id={button.Title} 
@@ -188,10 +189,10 @@
                 <p class="text-base font-normal text-center -mt-3 mb-1">Select {selectorName}</p>
                 <hr class="w-48 h-0 mx-auto opacity-30 rounded">
 
-                <div class="flex flex-row">
+                <div class="grid grid-cols-4">
                     <button on:click={customValueSubtract} disabled={customValue <= CUSTOM_BUTTON_MIN} class="font-extralight {customValue <= CUSTOM_BUTTON_MIN ? "text-zinc-400" : ""} mr-10 text-5xl">-</button>
-                    <div class="flex flex-row mt-3 mb-4 px-5 text-5xl font-normal justify-center rounded-sm bg-zinc-800">
-                        {CUSTOM_BUTTON_PRESTRING}{customValue}{CUSTOM_BUTTON_POSTSTRING}
+                    <div class="col-span-2 flex flex-row mt-3 mb-4 px-5 text-5xl font-normal justify-center rounded-sm bg-zinc-800">
+                        {CUSTOM_BUTTON_PRESTRING}{customValue.toFixed(1)}{CUSTOM_BUTTON_POSTSTRING}
                     </div>
                     <button on:click={customValueAdd} disabled={customValue >= CUSTOM_BUTTON_MAX} class="font-extralight {customValue >= CUSTOM_BUTTON_MAX ? "text-zinc-400" : ""} ml-10 text-5xl">+</button>
                 </div>
