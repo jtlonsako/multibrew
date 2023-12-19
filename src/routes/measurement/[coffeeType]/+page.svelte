@@ -27,7 +27,7 @@
     }
 
 </script>
-<div class="mt-10 flex flex-col place-items-center">
+<div class="mt-7 md:mt-10 flex flex-col place-items-center">
     {#each selectionLists as itemList, i}
         {#key selectionTypes[i]}
             <SelectionList
