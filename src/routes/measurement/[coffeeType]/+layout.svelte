@@ -53,8 +53,8 @@
     <div 
     on:outside={() => isOpen = false}
     use:clickOutside
-    class="absolute z-10 text-center justify-items-center my-10 md:my-14 bg-zinc-700 rounded-lg shadow-xl" >
-        {#each coffeeData as brewType, i}
+    class="absolute left-1/2 transform -translate-x-1/2 z-10 text-center bg-zinc-700 rounded-lg shadow-xl my-10 md:my-14" >
+            {#each coffeeData as brewType, i}
             <a href="/measurement/{brewType.route}" target="_self" class="block px-4 py-2 {i == 0 ? "rounded-t-lg" : i == coffeeData.length - 1 ? "rounded-b-lg" : ""} text-slate-400 hover:bg-zinc-500 hover:text-white">
                 {brewType.name}
             </a>
