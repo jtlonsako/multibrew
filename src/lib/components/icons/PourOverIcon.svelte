@@ -9,6 +9,10 @@
         "large": {
             "width": 50,
             "height": 80
+        },
+        "xl": {
+            "width": 90,
+            "height": 90 
         }
     }</script>
 
