@@ -6,7 +6,7 @@
 
 </script>
 
-<div class=" mt-6 grid justify-items-center font-serif text-3xl">
+<div class=" mt-3 grid justify-items-center font-serif text-3xl">
     <p class="font-serif text-2xl text-white">Select Brew Type</p>
     <hr class="w-52 mx-auto opacity-30 rounded my-3">
     {#each coffeeData as brewMethod, i}
