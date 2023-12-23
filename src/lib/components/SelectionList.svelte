@@ -195,7 +195,7 @@
                         {CUSTOM_BUTTON_PRESTRING}
                         <!-- {customValue.toFixed(1)} -->
                         <input type="number" bind:value={customValue} on:change={updateCustomButton} style="text-align:center;"
-                            max={CUSTOM_BUTTON_MAX} min={CUSTOM_BUTTON_MIN} class="w-full bg-zinc-800"/>
+                            max={CUSTOM_BUTTON_MAX} min={CUSTOM_BUTTON_MIN} class="w-full bg-zinc-800" pattern="\d*" />
                             {CUSTOM_BUTTON_POSTSTRING}
                     </div>
                     <button on:click={customValueAdd} disabled={customValue >= CUSTOM_BUTTON_MAX} class="font-extralight col-span-2 {customValue >= CUSTOM_BUTTON_MAX ? "text-zinc-400" : ""} text-5xl">+</button>
