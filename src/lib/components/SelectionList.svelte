@@ -181,20 +181,24 @@
     <Modal
     bind:open={modalOpen}
     >
-    <div class="rounded-lg w-full h-fit text-slate-100">
-        <div class="flex justify-start align-top -mt-7 ml-4">
-            <button class="text-2xl font-extralight text-zinc-300 hover:text-zinc-100" on:click={() => modalOpen = false}>X</button>
-        </div>
+        <div class="rounded-lg w-full h-fit text-slate-100">
+            <div class="flex justify-start align-top -mt-7 ml-4">
+                <button class="text-2xl font-extralight text-zinc-300 hover:text-zinc-100" on:click={() => modalOpen = false}>X</button>
+            </div>
             <div class="w-full grid grid-cols-1 place-items-center justify-items-center">
-                <p class="text-base font-normal text-center -mt-3 mb-1">Select {selectorName}</p>
+                <p class="text-base font-normal text-center -mt-3 mb-1">Custom {selectorName}</p>
                 <hr class="w-48 h-0 mx-auto opacity-30 rounded">
 
-                <div class="grid grid-cols-4">
-                    <button on:click={customValueSubtract} disabled={customValue <= CUSTOM_BUTTON_MIN} class="font-extralight {customValue <= CUSTOM_BUTTON_MIN ? "text-zinc-400" : ""} mr-10 text-5xl">-</button>
-                    <div class="col-span-2 flex flex-row mt-3 mb-4 px-5 text-5xl font-normal justify-center rounded-sm bg-zinc-800">
-                        {CUSTOM_BUTTON_PRESTRING}{customValue.toFixed(1)}{CUSTOM_BUTTON_POSTSTRING}
+                <div class="grid grid-cols-10">
+                    <button on:click={customValueSubtract} disabled={customValue <= CUSTOM_BUTTON_MIN} class="font-extralight col-span-2 {customValue <= CUSTOM_BUTTON_MIN ? "text-zinc-400" : ""} text-5xl">-</button>
+                    <div class="col-span-6 flex flex-row mt-3 mb-4 px-5 text-5xl font-normal justify-center rounded-sm bg-zinc-800">
+                        {CUSTOM_BUTTON_PRESTRING}
+                        <!-- {customValue.toFixed(1)} -->
+                        <input type="number" bind:value={customValue} on:change={updateCustomButton} style="text-align:center;"
+                            max={CUSTOM_BUTTON_MAX} min={CUSTOM_BUTTON_MIN} class="w-full bg-zinc-800"/>
+                            {CUSTOM_BUTTON_POSTSTRING}
                     </div>
-                    <button on:click={customValueAdd} disabled={customValue >= CUSTOM_BUTTON_MAX} class="font-extralight {customValue >= CUSTOM_BUTTON_MAX ? "text-zinc-400" : ""} ml-10 text-5xl">+</button>
+                    <button on:click={customValueAdd} disabled={customValue >= CUSTOM_BUTTON_MAX} class="font-extralight col-span-2 {customValue >= CUSTOM_BUTTON_MAX ? "text-zinc-400" : ""} text-5xl">+</button>
                 </div>
                 <div class="flex flex-row">
                     <p class="font-extralight text-base mx-4 font-serif">{CUSTOM_BUTTON_MIN}</p>
@@ -206,3 +210,17 @@
         </div>
     </Modal>
 {/if}
+
+<style>
+    /* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+</style>

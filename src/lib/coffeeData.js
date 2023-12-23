@@ -37,7 +37,7 @@ export const coffeeData = [
                         gram_gram: {
                             min: 2,
                             max: 25,
-                            defaultCustomValue: 12,
+                            defaultCustomValue: 12.0 * 1.0,
                             prestring: "1:",
                             poststring: ""
                         }
