@@ -2,6 +2,8 @@
     import { coffeeData } from "$lib/coffeeData";
     import PourOverIcon from "$lib/components/icons/PourOverIcon.svelte"
     import DownArrowIcon from "$lib/components/icons/DownArrowIcon.svelte";
+    import Icon from '@iconify/svelte';
+
 
     let {data} = $props()
     let {name} = data.brewData
@@ -42,24 +44,30 @@
 
 </script>
 
-<button on:click={handleButtonClick} class="w-1/2 sm:w-1/3  md:w-1/4 lg:w-1/6 md:pt-5">
-    <div class="flex flex-row py-1 text-slate-100 font-serif text-sm rounded-lg bg-zinc-700 justify-around place-items-center">
-        <p></p>
-            {name}
-        <DownArrowIcon />
+<div class="flex flex-row w-full">
+    <a href="/" class="flex justify-start ml-3">
+        <Icon icon="ic:outline-arrow-back-ios" color="white" width="32" height="32" />    </a>
+    <div class="flex w-full justify-center">
+        <button on:click={handleButtonClick} class="w-1/2 sm:w-1/3  md:w-1/4 lg:w-1/6 md:pt-5 -ml-8">
+            <div class="flex flex-row py-1 text-slate-100 font-serif text-sm rounded-lg bg-zinc-700 justify-around place-items-center">
+                <p></p>
+                    {name}
+                <DownArrowIcon />
+            </div>
+        </button>
+        {#if isOpen}
+            <div 
+            on:outside={() => isOpen = false}
+            use:clickOutside
+            class="absolute left-1/2 transform -translate-x-1/2 z-10 text-center bg-zinc-700 rounded-lg shadow-xl my-10 md:my-14" >
+                    {#each coffeeData as brewType, i}
+                    <a href="/measurement/{brewType.route}" target="_self" class="block px-4 py-2 {i == 0 ? "rounded-t-lg" : i == coffeeData.length - 1 ? "rounded-b-lg" : ""} text-slate-400 hover:bg-zinc-500 hover:text-white">
+                        {brewType.name}
+                    </a>
+                {/each}
+            </div>
+        {/if}
     </div>
-</button>
-{#if isOpen}
-    <div 
-    on:outside={() => isOpen = false}
-    use:clickOutside
-    class="absolute left-1/2 transform -translate-x-1/2 z-10 text-center bg-zinc-700 rounded-lg shadow-xl my-10 md:my-14" >
-            {#each coffeeData as brewType, i}
-            <a href="/measurement/{brewType.route}" target="_self" class="block px-4 py-2 {i == 0 ? "rounded-t-lg" : i == coffeeData.length - 1 ? "rounded-b-lg" : ""} text-slate-400 hover:bg-zinc-500 hover:text-white">
-                {brewType.name}
-            </a>
-        {/each}
-    </div>
-{/if}
+</div>
 
 <slot />
