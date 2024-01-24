@@ -44,11 +44,12 @@
 
 </script>
 
-<div class="flex flex-row w-full">
-    <a href="/" class="flex justify-start ml-3">
-        <Icon icon="ic:outline-arrow-back-ios" color="white" width="32" height="32" />    </a>
+<div class="flex flex-row w-full md:w-3/12">
+    <a href="/" class="absolute justify-start mt-4 bg-zinc-700 rounded-lg place-content-center px-1 py-1">
+        <Icon icon="ic:outline-arrow-back-ios" color="white" width="32" height="32" />
+    </a>
     <div class="flex w-full justify-center">
-        <button on:click={handleButtonClick} class="w-1/2 sm:w-1/3  md:w-1/4 lg:w-1/6 md:pt-5 -ml-8">
+        <button on:click={handleButtonClick} class="w-1/2 md:pt-5">
             <div class="flex flex-row py-1 text-slate-100 font-serif text-sm rounded-lg bg-zinc-700 justify-around place-items-center">
                 <p></p>
                     {name}
