@@ -45,7 +45,7 @@
 </script>
 
 <div class="flex flex-row w-full md:w-4/12">
-    <a href="/" class="absolute justify-start mt-4 place-content-center px-1 py-1">
+    <a href="/" class="absolute justify-start md:mt-4 place-content-center px-1 py-1">
         <Icon icon="ic:outline-arrow-back-ios" color="white" width="32" height="32" />
     </a>
     <div class="flex w-full justify-center">
