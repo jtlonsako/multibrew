@@ -185,13 +185,13 @@
             <div class="flex justify-start align-top -mt-7 ml-4">
                 <button class="text-2xl font-extralight text-zinc-300 hover:text-zinc-100" on:click={() => modalOpen = false}>X</button>
             </div>
-            <div class="w-full grid grid-cols-1 place-items-center justify-items-center">
+            <div class="w-full grid justify-items-center">
                 <p class="text-base font-normal text-center -mt-3 mb-1">Custom {selectorName}</p>
                 <hr class="w-48 h-0 mx-auto opacity-30 rounded">
 
-                <div class="grid grid-cols-12">
-                    <button on:click={customValueSubtract} disabled={customValue <= CUSTOM_BUTTON_MIN} class="w-full font-extralight col-span-2 {customValue <= CUSTOM_BUTTON_MIN ? "text-zinc-400" : ""} text-5xl">-</button>
-                    <div class="col-span-8 md:col-span-6 flex flex-row mt-3 mb-4 px-5 w-full text-5xl font-normal justify-center rounded-sm bg-zinc-800">
+                <div class="grid grid-cols-12 md:grid-cols-10 gap-4 w-full">
+                    <button on:click={customValueSubtract} disabled={customValue <= CUSTOM_BUTTON_MIN} class="font-extralight col-span-2 {customValue <= CUSTOM_BUTTON_MIN ? "text-zinc-400" : ""} text-5xl">-</button>
+                    <div class="col-span-8 md:col-span-6 flex flex-row mt-3 mb-4 px-5 text-5xl font-normal justify-center rounded-sm bg-zinc-800">
                         {CUSTOM_BUTTON_PRESTRING}
                         <!-- {customValue.toFixed(1)} -->
                         <input type="number" bind:value={customValue} on:change={updateCustomButton} style="text-align:center;"
