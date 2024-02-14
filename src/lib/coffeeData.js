@@ -173,22 +173,40 @@ export const coffeeData = [
                 name: "Size",
                 levels: {
                     coffee: [
-                    {
-                        Title: "Small",
-                        Description: "12g",
-                        Value: 12
-                    },
-                    {
-                        Title: "Medium",
-                        Description: "14g",
-                        Value: 14
-                    },
-                    {
-                        Title: "Large",
-                        Description: "16g",
-                        Value: 16
-                    }
-                ]},
+                        {
+                            Title: "Small",
+                            Description: "12g",
+                            Value: 12
+                        },
+                        {
+                            Title: "Medium",
+                            Description: "14g",
+                            Value: 14
+                        },
+                        {
+                            Title: "Large",
+                            Description: "16g",
+                            Value: 16
+                        }
+                    ],
+                    water: [
+                        {
+                            Title: "Small",
+                            Description: "95ml",
+                            Value: 95
+                        },
+                        {
+                            Title: "Medium",
+                            Description: "120ml",
+                            Value: 120
+                        },
+                        {
+                            Title: "Large",
+                            Description: "144ml",
+                            Value: 144
+                        }
+                    ]
+                },
                 levelDescription:
                 {
                     customButtonInfo: {
@@ -200,7 +218,7 @@ export const coffeeData = [
                             poststring: "g"
                         }
                     },
-                    buttons: []
+                    buttons: ["water", "coffee"]
                 },
                 defaultPicker: "coffee"
             }   
@@ -261,22 +279,40 @@ export const coffeeData = [
                 name: "Size",
                 levels: {
                     water: [
-                    {
-                        Title: "Small",
-                        Description: "250ml",
-                        Value: 250
-                    },
-                    {
-                        Title: "Medium",
-                        Description: "500ml",
-                        Value: 500
-                    },
-                    {
-                        Title: "Large",
-                        Description: "800ml",
-                        Value: 800
-                    }
-                ]},
+                        {
+                            Title: "Small",
+                            Description: "340ml",
+                            Value: 340
+                        },
+                        {
+                            Title: "Medium",
+                            Description: "500ml",
+                            Value: 595
+                        },
+                        {
+                            Title: "Large",
+                            Description: "800ml",
+                            Value: 800
+                        }
+                    ],
+                    coffee: [
+                        {
+                            Title: "Small",
+                            Description: "20g",
+                            Value: 20
+                        },
+                        {
+                            Title: "Medium",
+                            Description: "35g",
+                            Value: 35
+                        },
+                        {
+                            Title: "Large",
+                            Description: "47g",
+                            Value: 47
+                        }
+                    ]
+                },
                 levelDescription:
                 {
                     customButtonInfo: {
@@ -286,9 +322,16 @@ export const coffeeData = [
                             defaultCustomValue: 1000,
                             prestring: "",
                             poststring: "ml"
+                        },
+                        coffee: {
+                            min: 10,
+                            max: 150,
+                            defaultCustomValue: 80,
+                            prestring: "",
+                            poststring: "g"
                         }
                     },
-                    buttons: []
+                    buttons: ["water", "coffee"]
                 },
                 defaultPicker: "water"
             }   
