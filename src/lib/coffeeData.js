@@ -216,6 +216,13 @@ export const coffeeData = [
                             defaultCustomValue: 18,
                             prestring: "",
                             poststring: "g"
+                        },
+                        water: {
+                            min: 50,
+                            max: 300,
+                            defaultCustomValue: 180,
+                            prestring: "",
+                            poststring: "ml"
                         }
                     },
                     buttons: ["water", "coffee"]

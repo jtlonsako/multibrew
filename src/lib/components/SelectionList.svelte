@@ -41,7 +41,10 @@
 
     const updateCustomButton = () => {
         let currentCustomButton = fullButtonArray.filter((button) => button["Title"] == "Custom")[0]
-        customValue = customValue
+        if(customValue < CUSTOM_BUTTON_MIN) customValue = CUSTOM_BUTTON_MIN
+        else if(customValue > CUSTOM_BUTTON_MAX) customValue = CUSTOM_BUTTON_MAX
+        else customValue = customValue
+
         currentCustomButton.Value = customValue
         currentCustomButton.Description = CUSTOM_BUTTON_PRESTRING + customValue.toFixed(1) + CUSTOM_BUTTON_POSTSTRING
 
