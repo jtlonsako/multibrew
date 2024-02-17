@@ -356,4 +356,93 @@ export const coffeeData = [
             return [totalCoffeeAmount, totalWaterAmount]
         }
     },
+    {
+        name: "Aeropress",
+        route: "aeropress",
+        selectionLists: [
+            {
+                name: "Strength",
+                levels:{
+                    gram_gram: [
+                    {
+                        Title: "Light",
+                        Description: "1:16",
+                        Value: 16
+                    },
+                    {
+                        Title: "Normal",
+                        Description: "1:12",
+                        Value: 12
+                    },
+                    {
+                        Title: "Strong",
+                        Description: "1:8",
+                        Value: 8
+                    }
+                ]},
+                levelDescription:
+                {
+                    customButtonInfo: {
+                        gram_gram: {
+                            min: 2,
+                            max:25,
+                            defaultCustomValue: 6,
+                            prestring: "1:",
+                            poststring: ""
+                        }
+                    },
+                    buttons: []
+                },
+                defaultPicker: "gram_gram"          
+            },
+            {
+                name: "Size",
+                levels: {
+                    coffee: [
+                        {
+                            Title: "Small",
+                            Description: "12g",
+                            Value: 12
+                        },
+                        {
+                            Title: "Medium",
+                            Description: "15g",
+                            Value: 15
+                        },
+                        {
+                            Title: "Large",
+                            Description: "18g",
+                            Value: 18
+                        }
+                    ]
+                },
+                levelDescription:
+                {
+                    customButtonInfo: {
+                        coffee: {
+                            min: 5,
+                            max: 30,
+                            defaultCustomValue: 20,
+                            prestring: "",
+                            poststring: "g"
+                        }
+                    },
+                    buttons: []
+                },
+                defaultPicker: "coffee"
+            }   
+        ],
+        operation: function (selectedStrengthValue, selectedSizeValue, selectionSizeType) {
+            let [totalCoffeeAmount, totalWaterAmount] = [0, 0]
+            if(selectionSizeType === "water") {
+                totalWaterAmount = selectedSizeValue.toFixed(1)
+                totalCoffeeAmount = (totalWaterAmount / selectedStrengthValue).toFixed(1);
+            } else if(selectionSizeType === "coffee") {
+                totalCoffeeAmount = selectedSizeValue.toFixed(1)
+                totalWaterAmount = (totalCoffeeAmount * selectedStrengthValue).toFixed(1);
+            }
+
+            return [totalCoffeeAmount, totalWaterAmount]
+        }
+    }
 ]

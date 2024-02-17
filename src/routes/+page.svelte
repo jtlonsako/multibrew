@@ -2,6 +2,7 @@
     import PourOverIcon from "$lib/components/icons/PourOverIcon.svelte";
     import VietnamesePhin from "$lib/components/icons/VietnamesePhin.svelte";
     import FrenchPress from "$lib/components/icons/FrenchPress.svelte";
+    import Aeropress from "$lib/components/icons/Aeropress.svelte";
     import { coffeeData } from "$lib/coffeeData";
 
 </script>
@@ -16,8 +17,10 @@
                     <PourOverIcon size="xl" />                    
                 {:else if i == 1}
                     <VietnamesePhin />
-                {:else}
+                {:else if i == 2}
                     <FrenchPress />
+                {:else}
+                    <Aeropress />
                 {/if}
             </div>
             <p class="font-mono text-base text-zinc-50">{brewMethod.name}</p>
