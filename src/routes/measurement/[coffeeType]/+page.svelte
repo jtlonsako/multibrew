@@ -20,7 +20,7 @@
         }))
 
     let finalRecipeResults = $derived(operation(selectionVars[0], selectionVars[1], selectionTypes[1]))
-    let finalDisplayType = $state("pourInstruction")
+    let finalDisplayType = $state("quantity")
 
     const ChangeSelectionType = (event, i) => {
         let chosenSelectedType = event.detail
