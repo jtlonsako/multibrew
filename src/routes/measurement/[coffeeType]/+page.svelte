@@ -30,7 +30,7 @@
     }
 
 </script>
-<div class="mt-7 md:mt-10 flex flex-col place-items-center">
+<div class="mt-7 md:mt-10 grid w-full justify-items-center">
     {#each selectionLists as itemList, i}
         {#key selectionTypes[i]}
             <SelectionList
@@ -53,12 +53,12 @@
                     totalWaterAmount = {finalRecipeResults[1]}
                 /> 
             </div>
-            <button class="col-span-1 col-start-12" onclick={() => finalDisplayType='pourInstruction'}>
+            <button class="col-span-1 col-start-11" onclick={() => finalDisplayType='pourInstruction'}>
                 <Icon icon="ic:outline-arrow-forward-ios" color="white" width="32" height="32" />
             </button>
         </div>
     {:else}
-        <div class="w-full grid grid-cols-12">
+        <div class="w-full grid grid-cols-11">
             <button class="col-span-1 col-start-1" onclick={() => finalDisplayType='quantity'}>
                 <Icon icon="ic:outline-arrow-back-ios" color="white" width="32" height="32" />
             </button>

@@ -71,6 +71,6 @@
     </div>
 </div>
 
-<div class="w-5/6 grid justify-items-center">
+<div class="w-full grid justify-items-center">
     <slot />
 </div>
