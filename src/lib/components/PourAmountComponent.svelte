@@ -13,12 +13,12 @@
         <div id="MiniRecipeDisplay" class="w-full flex justify-center text-base mt-2">
             <div class=" w-80 grid grid-cols-12">
                 <div class="col-span-1 font-mono flex">
-                    <i class=""><WaterDropIcon displaySize="small" /></i>
-                    <p class="">{totalWaterAmount}ml</p>
-                </div>
-                <div class="col-span-1 col-end-12 font-mono flex">
                     <i class=""><CoffeeBeanIcon size="extrasmall" /></i>
                     <p class="ml-1">{totalCoffeeGrounds}g</p>
+                </div>
+                <div class="col-span-1 col-end-12 font-mono flex">
+                    <i class=""><WaterDropIcon displaySize="small" /></i>
+                    <p class="">{totalWaterAmount}ml</p>
                 </div>
             </div>
         </div>
