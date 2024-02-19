@@ -1,6 +1,8 @@
 <script>
     import FinalRecipeComponent from "$lib/components/FinalRecipeComponent.svelte";
+    import PourAmountComponent from "$lib/components/PourAmountComponent.svelte";
     import SelectionList from "$lib/components/SelectionList.svelte";
+    import Icon from "@iconify/svelte";
 	import WaterDropIcon from "$lib/components/icons/WaterDropIcon.svelte";
 
     let {data} = $props()
@@ -18,6 +20,7 @@
         }))
 
     let finalRecipeResults = $derived(operation(selectionVars[0], selectionVars[1], selectionTypes[1]))
+    let finalDisplayType = $state("pourInstruction")
 
     const ChangeSelectionType = (event, i) => {
         let chosenSelectedType = event.detail
@@ -41,8 +44,37 @@
         {/key}
     {/each} 
 </div>
+{#if route === "pour"}
+    {#if finalDisplayType === "quantity"}
+        <div class="w-full grid grid-cols-11">
+            <div class="col-span-9 col-start-2 md:col-start-2">
+                <FinalRecipeComponent 
+                    totalCoffeeGrounds={finalRecipeResults[0]} 
+                    totalWaterAmount = {finalRecipeResults[1]}
+                /> 
+            </div>
+            <button class="col-span-1 col-start-12" onclick={() => finalDisplayType='pourInstruction'}>
+                <Icon icon="ic:outline-arrow-forward-ios" color="white" width="32" height="32" />
+            </button>
+        </div>
+    {:else}
+        <div class="w-full grid grid-cols-12">
+            <button class="col-span-1 col-start-1" onclick={() => finalDisplayType='quantity'}>
+                <Icon icon="ic:outline-arrow-back-ios" color="white" width="32" height="32" />
+            </button>
+            <div class="col-span-9 col-start-2">
+                <PourAmountComponent 
+                    totalCoffeeGrounds={finalRecipeResults[0]} 
+                    totalWaterAmount={finalRecipeResults[1]}
+                /> 
+            </div>
 
-<FinalRecipeComponent 
-    totalCoffeeGrounds={finalRecipeResults[0]} 
-    totalWaterAmount={finalRecipeResults[1]}
-/>
+        </div>
+    {/if}
+
+{:else}
+    <FinalRecipeComponent 
+        totalCoffeeGrounds={finalRecipeResults[0]} 
+        totalWaterAmount = {finalRecipeResults[1]}
+    />
+{/if}

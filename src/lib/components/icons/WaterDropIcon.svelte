@@ -1,11 +1,18 @@
 <script>
-    export const displaySize = "medium"
+    // export const displaySize = "medium"
+    const {
+        displaySize = "medium"
+    } = $props()
 
     const sizeParams =
     {
+        extrasmall: {
+            width: 10,
+            height: 10
+        },
         small: {
-            width: 13,
-            height: 13
+            width: 20,
+            height: 22
         },
 
         medium: {

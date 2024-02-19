@@ -1,7 +1,14 @@
 <script>
-    export const size = "small"
+    const {
+        size = "small"
+    } = $props()
+    
 
     const sizeParams = {
+        "extrasmall": {
+            "width": 10,
+            "height": 20
+        },
         "small": {
             "width": 14,
             "height": 25
