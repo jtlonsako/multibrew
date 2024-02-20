@@ -30,7 +30,7 @@
     }
 
 </script>
-<div class="mt-7 md:mt-10 grid w-full justify-items-center">
+<div class="mt-7 md:mt-10 grid w-full justify-center">
     {#each selectionLists as itemList, i}
         {#key selectionTypes[i]}
             <SelectionList
@@ -47,7 +47,7 @@
 {#if route === "pour"}
     {#if finalDisplayType === "quantity"}
         <div class="w-full grid grid-cols-11">
-            <div class="col-span-9 col-start-2 md:col-start-2">
+            <div class="col-span-9 col-start-2">
                 <FinalRecipeComponent 
                     totalCoffeeGrounds={finalRecipeResults[0]} 
                     totalWaterAmount = {finalRecipeResults[1]}
