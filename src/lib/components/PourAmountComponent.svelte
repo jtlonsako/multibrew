@@ -41,13 +41,19 @@
         </div>
     
         <div id="PourAmountContainer" class="w-full grid justify-items-center text-xl font-mono">
-            <div class="flex">
-                <p class="pt-1">Pour 1: {firstPourAmount}ml</p>
+            <div class="w-60 flex justify-center">
+                <div class="w-full grid grid-cols-2 justify-items-center">
+                    <p>Pour 1: </p>
+                    <p>{firstPourAmount}ml</p>
+                </div>
                 <p class="ml-5 text-green-400">+{firstPourAmount}ml</p>
             </div>
             {#each Array(4) as item, i}
-                <div class="flex">
-                    <p class="pt-1">Pour {i + 2}: {firstPourAmount + divisiblePourAmount * (i + 1)}ml</p>
+                <div class="w-60 flex justify-center">
+                    <div class="w-full grid grid-cols-2 justify-items-center">
+                        <p class="pt-1">Pour {i + 2}: </p>
+                        <p>{firstPourAmount + divisiblePourAmount * (i + 1)}ml</p>
+                    </div>
                     <p class="ml-5 text-green-400">+{divisiblePourAmount}ml</p>
                 </div>
             {/each}
