@@ -37,7 +37,7 @@
             </div>
             {#each Array(4) as item, i}
                 <div class="flex">
-                    <p class="pt-1">Pour {i + 1}: {firstPourAmount + divisiblePourAmount * (i + 1)}ml</p>
+                    <p class="pt-1">Pour {i + 2}: {firstPourAmount + divisiblePourAmount * (i + 1)}ml</p>
                     <p class="ml-5 text-green-400">+{divisiblePourAmount}ml</p>
                 </div>
             {/each}
