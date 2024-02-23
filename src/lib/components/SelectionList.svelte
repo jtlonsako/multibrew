@@ -206,7 +206,7 @@
                 <div class="flex flex-row">
                     <p class="font-extralight text-base mx-4 font-serif">{CUSTOM_BUTTON_MIN}</p>
                     <input type="range" on:change={updateCustomButton} bind:value={customValue}
-                     min={CUSTOM_BUTTON_MIN} max={CUSTOM_BUTTON_MAX} step=0.1 />
+                     min={CUSTOM_BUTTON_MIN} max={CUSTOM_BUTTON_MAX} step={selectorName === 'size' ? 0.1 : 1} />
                     <p class="font-extralight text-base mx-4 font-serif">{CUSTOM_BUTTON_MAX}</p>
                 </div>
             </div>

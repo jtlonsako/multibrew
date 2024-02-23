@@ -3,10 +3,13 @@
     import WaterDropIcon from "./icons/WaterDropIcon.svelte";
     
         let {totalCoffeeGrounds, totalWaterAmount} = $props()
-        let individualPourAmount = $derived(totalWaterAmount / 5)
+        // let individualPourAmount = $derived(totalWaterAmount / 5)'
+        let firstPourAmount = $derived(Math.floor(totalWaterAmount / 5))
+        let divisiblePourAmount = $derived((totalWaterAmount - firstPourAmount) / 4)
+
     </script>
     
-    <div id="RecipeContainer" class="w-full text-slate-100 grid justify-center font-medium font-mono text-5xl">
+    <div id="RecipeContainer" class="w-full text-slate-100 grid justify-items-center font-medium font-mono text-5xl">
         <p class="text-base font-thin text-center mb-2">Final Recipe</p>
         <hr class="w-48 h-0 mx-auto opacity-30 rounded">
 
@@ -28,8 +31,15 @@
         </div>
     
         <div id="PourAmountContainer" class="w-full grid justify-items-center text-xl font-mono">
-            {#each Array(5) as item, i}
-                <p class="pt-1">Pour {i + 1}: {individualPourAmount * (i + 1)}ml</p>
+            <div class="flex">
+                <p class="pt-1">Pour 1: {firstPourAmount}ml</p>
+                <p class="ml-5 text-green-400">+{firstPourAmount}ml</p>
+            </div>
+            {#each Array(4) as item, i}
+                <div class="flex">
+                    <p class="pt-1">Pour {i + 1}: {firstPourAmount + divisiblePourAmount * (i + 1)}ml</p>
+                    <p class="ml-5 text-green-400">+{divisiblePourAmount}ml</p>
+                </div>
             {/each}
         </div>
     </div>
