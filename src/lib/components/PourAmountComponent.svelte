@@ -3,9 +3,19 @@
     import WaterDropIcon from "./icons/WaterDropIcon.svelte";
     
         let {totalCoffeeGrounds, totalWaterAmount} = $props()
-        // let individualPourAmount = $derived(totalWaterAmount / 5)'
-        let firstPourAmount = $derived(Math.floor(totalWaterAmount / 5))
+        let divisibleByFourOffset = $state(0)
+        let firstPourAmount = $derived(Math.floor(totalWaterAmount / 5) - divisibleByFourOffset)
         let divisiblePourAmount = $derived((totalWaterAmount - firstPourAmount) / 4)
+        
+
+        $effect(() => {
+            divisibleByFourOffset = 0
+            let fakevar = totalWaterAmount
+        })
+
+        $effect(() => {
+            if((totalWaterAmount - firstPourAmount) % 4 !== 0) divisibleByFourOffset++
+        })
 
     </script>
     
