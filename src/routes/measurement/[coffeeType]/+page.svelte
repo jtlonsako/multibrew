@@ -48,13 +48,13 @@
     {#if finalDisplayType === "quantity"}
         <div class="w-full grid grid-cols-11 md:grid-cols-5">
             <div class="col-span-2 md:col-span-1"></div>
-            <div class="col-span-9 md:col-span-3 col-start-2">
+            <div class="col-span-7 md:col-span-3 col-start-3">
                 <FinalRecipeComponent 
                     totalCoffeeGrounds={finalRecipeResults[0]} 
                     totalWaterAmount = {finalRecipeResults[1]}
                 /> 
             </div>
-            <button class="w-full flex col-span-2 col-start-11 md:col-start-5 place-items-center md:justify-center" onclick={() => finalDisplayType='pourInstruction'}>
+            <button class="w-full flex col-span-2 col-start-10 md:col-start-5 place-items-center justify-center" onclick={() => finalDisplayType='pourInstruction'}>
                 <Icon icon="ic:outline-arrow-forward-ios" color="white" width="32" height="32" />
             </button>
         </div>
@@ -63,7 +63,7 @@
             <button class=" w-full flex col-span-2 md:col-span-1 items-center justify-center" onclick={() => finalDisplayType='quantity'}>
                 <Icon icon="ic:outline-arrow-back-ios" color="white" width="32" height="32" />
             </button>
-            <div class="col-span-9 md:col-span-3 col-start-2">
+            <div class="col-span-7 md:col-span-3 col-start-3">
                 <PourAmountComponent 
                     totalCoffeeGrounds={finalRecipeResults[0]} 
                     totalWaterAmount={finalRecipeResults[1]}
