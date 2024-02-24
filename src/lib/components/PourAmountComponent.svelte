@@ -19,7 +19,7 @@
 
     </script>
     
-    <div id="RecipeContainer" class="w-full text-slate-100 grid justify-items-center font-medium font-mono text-5xl">
+    <div id="PourAmountContainer" class="w-full text-slate-100 grid justify-items-center font-medium font-mono text-5xl">
         <p class="text-base font-thin text-center mb-2">Final Recipe</p>
         <hr class="w-48 h-0 mx-auto opacity-30 rounded">
 

@@ -20,7 +20,7 @@
         }))
 
     let finalRecipeResults = $derived(operation(selectionVars[0], selectionVars[1], selectionTypes[1]))
-    let finalDisplayType = $state("quantity")
+    let finalDisplayType = $state("pourInstruction")
 
     const ChangeSelectionType = (event, i) => {
         let chosenSelectedType = event.detail
@@ -46,23 +46,24 @@
 </div>
 {#if route === "pour"}
     {#if finalDisplayType === "quantity"}
-        <div class="w-full grid grid-cols-11 md:grid-cols-5">
-            <div class="col-span-9 md:col-span-3 col-start-2">
+        <div class="w-full grid grid-cols-11 lg:grid-cols-5">
+            <div class="col-span-2"></div>
+            <div class="col-span-9 lg:col-span-1 col-start-2">
                 <FinalRecipeComponent 
                     totalCoffeeGrounds={finalRecipeResults[0]} 
                     totalWaterAmount = {finalRecipeResults[1]}
                 /> 
             </div>
-            <button class="col-span-1 col-start-11 md:col-start-5 flex w-full place-items-center" onclick={() => finalDisplayType='pourInstruction'}>
+            <button class="w-full flex col-span-2 col-start-11 md:col-start-5 place-items-center" onclick={() => finalDisplayType='pourInstruction'}>
                 <Icon icon="ic:outline-arrow-forward-ios" color="white" width="32" height="32" />
             </button>
         </div>
     {:else}
         <div class="w-full grid grid-cols-11 md:grid-cols-5">
-            <button class="col-span-1 col-start-1 w-full flex place-items-center" onclick={() => finalDisplayType='quantity'}>
+            <button class=" w-full flex col-span-2 col-start-1 items-center justify-center" onclick={() => finalDisplayType='quantity'}>
                 <Icon icon="ic:outline-arrow-back-ios" color="white" width="32" height="32" />
             </button>
-            <div class="col-span-9 md:col-span-3 col-start-2">
+            <div class="col-span-9 md:col-span-1 col-start-2">
                 <PourAmountComponent 
                     totalCoffeeGrounds={finalRecipeResults[0]} 
                     totalWaterAmount={finalRecipeResults[1]}
