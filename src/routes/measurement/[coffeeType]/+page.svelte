@@ -63,7 +63,7 @@
             <button class=" w-full flex col-span-1 md:col-span-1 items-center justify-center" onclick={() => finalDisplayType='quantity'}>
                 <Icon icon="ic:outline-arrow-back-ios" color="white" width="32" height="32" />
             </button>
-            <div class="col-span-8 md:col-span-3 col-start-2 md:col-start-3">
+            <div class="col-span-8 md:col-span-3 col-start-2">
                 <PourAmountComponent 
                     totalCoffeeGrounds={finalRecipeResults[0]} 
                     totalWaterAmount={finalRecipeResults[1]}
