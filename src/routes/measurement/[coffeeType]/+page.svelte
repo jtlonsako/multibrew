@@ -46,15 +46,15 @@
 </div>
 {#if route === "pour"}
     {#if finalDisplayType === "quantity"}
-        <div class="w-full grid grid-cols-11 md:grid-cols-5">
-            <div class="col-span-2 md:col-span-1"></div>
-            <div class="col-span-7 md:col-span-3 col-start-3">
+        <div class="w-full grid grid-cols-10 md:grid-cols-5">
+            <div class="col-span-1 md:col-span-1"></div>
+            <div class="col-span-8 md:col-span-3 col-start-2">
                 <FinalRecipeComponent 
                     totalCoffeeGrounds={finalRecipeResults[0]} 
                     totalWaterAmount = {finalRecipeResults[1]}
                 /> 
             </div>
-            <button class="w-full flex col-span-2 col-start-10 md:col-start-5 place-items-center justify-center" onclick={() => finalDisplayType='pourInstruction'}>
+            <button class="w-full flex col-span-1 col-start-10 md:col-start-5 place-items-center justify-center" onclick={() => finalDisplayType='pourInstruction'}>
                 <Icon icon="ic:outline-arrow-forward-ios" color="white" width="32" height="32" />
             </button>
         </div>
