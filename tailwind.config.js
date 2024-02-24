@@ -12,7 +12,11 @@ export default {
       '4xl': '2.441rem',
       '5xl': '3.052rem',
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        'mono': ['"Share Tech Mono"', 'monospace']
+      }
+    },
   },
   plugins: [],
 }

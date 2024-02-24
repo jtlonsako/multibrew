@@ -5,6 +5,7 @@ export function load({ params }) {
     return {
         brewData: {
             name: brewData?.name,
+            route: brewData?.route,
             selectionLists: brewData?.selectionLists,
             operation: brewData?.operation
         }

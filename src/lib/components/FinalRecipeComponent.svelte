@@ -4,7 +4,7 @@ import CoffeeBeanIcon from "./icons/CoffeeBeanIcon.svelte";
     let {totalCoffeeGrounds, totalWaterAmount} = $props()
 </script>
 
-<div id="RecipeContainer" class="w-5/6 text-slate-100 place-content-center font-medium text-5xl font-mono">
+<div id="RecipeContainer" class="w-full text-slate-100 grid justify-items-center font-medium text-5xl font-mono">
     <p class="text-base font-thin text-center mb-2">Final Recipe</p>
     <hr class="w-48 h-0 mx-auto opacity-30 rounded">
 
