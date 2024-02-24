@@ -20,7 +20,7 @@
         }))
 
     let finalRecipeResults = $derived(operation(selectionVars[0], selectionVars[1], selectionTypes[1]))
-    let finalDisplayType = $state("pourInstruction")
+    let finalDisplayType = $state("quantity")
 
     const ChangeSelectionType = (event, i) => {
         let chosenSelectedType = event.detail
@@ -59,11 +59,11 @@
             </button>
         </div>
     {:else}
-        <div class="w-full grid grid-cols-11 md:grid-cols-5">
-            <button class=" w-full flex col-span-2 md:col-span-1 items-center justify-center" onclick={() => finalDisplayType='quantity'}>
+        <div class="w-full grid grid-cols-10 md:grid-cols-5">
+            <button class=" w-full flex col-span-1 md:col-span-1 items-center justify-center" onclick={() => finalDisplayType='quantity'}>
                 <Icon icon="ic:outline-arrow-back-ios" color="white" width="32" height="32" />
             </button>
-            <div class="col-span-7 md:col-span-3 col-start-3">
+            <div class="col-span-8 md:col-span-3 col-start-2 md:col-start-3">
                 <PourAmountComponent 
                     totalCoffeeGrounds={finalRecipeResults[0]} 
                     totalWaterAmount={finalRecipeResults[1]}
