@@ -119,7 +119,7 @@ export const coffeeData = [
                 totalCoffeeAmount = (totalWaterAmount / selectedStrengthValue).toFixed(1);
             } else if(selectionSizeType === "coffee") {
                 totalCoffeeAmount = selectedSizeValue.toFixed(1)
-                totalWaterAmount = Math.floor(totalCoffeeAmount * selectedStrengthValue);
+                totalWaterAmount = Math.floor(totalCoffeeAmount * selectedStrengthValue).toFixed(1);
             }
 
             return [totalCoffeeAmount, totalWaterAmount]
