@@ -44,7 +44,7 @@
         if(customValue < CUSTOM_BUTTON_MIN) customValue = CUSTOM_BUTTON_MIN
         else if(customValue > CUSTOM_BUTTON_MAX) customValue = CUSTOM_BUTTON_MAX
         else customValue = customValue
-        if(selectorName == 'size' && selectionListType == 'water') customValue = Math.floor(customValue).toFixed(1)
+        if(selectorName == 'size') customValue = Math.floor(customValue).toFixed(1)
 
         currentCustomButton.Value = customValue
         currentCustomButton.Description = CUSTOM_BUTTON_PRESTRING + customValue.toFixed(1) + CUSTOM_BUTTON_POSTSTRING
