@@ -39,6 +39,7 @@
 	"type": "module",
 	"dependencies": {
 		"@popperjs/core": "^2.11.8",
+		"@vercel/analytics": "^1.2.2",
 		"tailwind-merge": "^2.0.0"
 	}
 }
