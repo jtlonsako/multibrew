@@ -93,11 +93,13 @@
 
     <div id="MiniPourAmountDisplay" class="w-full flex justify-center text-base mt-2">
         {#each pourAmountArray as pourAmount, i}
-            <div id="pourAmount" class="grid w-fit mx-2 justify-items-center text-xl gap-y-0">
+            <div id="pourAmount" class="grid w-fit mx-1 justify-items-center text-lg gap-y-0">
                 <p>{pourAmount}ml</p>
                 <p class="text-sm font-normal">Pour {i + 1}</p>
             </div>
-            <p class="flex h-full items-center">|</p>
+            {#if i < pourAmountArray.length - 1}
+                <p class="flex h-full items-center">|</p>
+            {/if}
         {/each}
     </div>
 </div>
