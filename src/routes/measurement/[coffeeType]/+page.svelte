@@ -1,6 +1,7 @@
 <script>
     import FinalRecipeComponent from "$lib/components/FinalRecipeComponent.svelte";
     import PourAmountComponent from "$lib/components/PourAmountComponent.svelte";
+    import StopwatchComponent from "$lib/components/StopwatchComponent.svelte";
     import SelectionList from "$lib/components/SelectionList.svelte";
     import Icon from "@iconify/svelte";
 	import WaterDropIcon from "$lib/components/icons/WaterDropIcon.svelte";
@@ -20,6 +21,7 @@
         }))
 
     let finalRecipeResults = $derived(operation(selectionVars[0], selectionVars[1], selectionTypes[1]))
+    // let finalDisplayType = $state("quantity")
     let finalDisplayType = $state("quantity")
 
     const ChangeSelectionType = (event, i) => {
@@ -58,7 +60,7 @@
                 <Icon icon="ic:outline-arrow-forward-ios" color="white" width="32" height="32" />
             </button>
         </div>
-    {:else}
+    {:else if finalDisplayType === "pourInstruction"}
         <div class="w-full grid grid-cols-10 md:grid-cols-5">
             <button class=" w-full flex col-span-1 md:col-span-1 items-center justify-center" onclick={() => finalDisplayType='quantity'}>
                 <Icon icon="ic:outline-arrow-back-ios" color="white" width="32" height="32" />
@@ -69,8 +71,22 @@
                     totalWaterAmount={finalRecipeResults[1]}
                 /> 
             </div>
-
+            <button class="w-full flex col-span-1 col-start-10 md:col-start-5 place-items-center justify-center" onclick={() => finalDisplayType='stopwatch'}>
+                <Icon icon="ic:outline-arrow-forward-ios" color="white" width="32" height="32" />
+            </button>
         </div>
+    {:else if finalDisplayType === "stopwatch"}
+    <div class="w-full grid grid-cols-10 md:grid-cols-5">
+        <button class=" w-full flex col-span-1 md:col-span-1 items-center justify-center" onclick={() => finalDisplayType='pourInstruction'}>
+            <Icon icon="ic:outline-arrow-back-ios" color="white" width="32" height="32" />
+        </button>
+        <div class="col-span-8 md:col-span-3 col-start-2">
+            <StopwatchComponent 
+                totalCoffeeGrounds={finalRecipeResults[0]} 
+                totalWaterAmount={finalRecipeResults[1]}
+            /> 
+        </div>
+    </div>
     {/if}
 
 {:else}
