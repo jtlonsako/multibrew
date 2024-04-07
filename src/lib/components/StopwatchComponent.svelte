@@ -83,7 +83,9 @@
     <div id="StopwatchDisplay" class="w-full grid justify-items-center mt-4 mb-8">
         <p>{elapsedTimeToDisplay}</p>
         <div class="flex w-full justify-center">
-            <button on:click={startTimer} class="py-2 px-4 bg-green-800 text-base rounded-lg">Start</button>
+            <button on:click={startTimer} class="py-2 px-4 bg-green-800 text-base rounded-lg" hidden={timerIsActive}>
+                {elapsedTimeInMilliseconds > 0 ? 'Continue' : 'Start'}
+            </button>
             <button on:click={stopTimer} class="py-2 px-4 mx-2 bg-red-800 text-base rounded-lg" hidden={!timerIsActive}>Stop</button>
             {#if !timerIsActive && elapsedTimeInMilliseconds > 0}
                 <button on:click={clearTimer} class="py-2 px-4 mx-2 bg-cyan-900 text-base rounded-lg">Reset</button>
