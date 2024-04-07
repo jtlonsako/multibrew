@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onDestroy } from "svelte";
     import CoffeeBeanIcon from "./icons/CoffeeBeanIcon.svelte";
     import WaterDropIcon from "./icons/WaterDropIcon.svelte";    
 
@@ -60,6 +61,10 @@
 
     $effect(() => {
         if((totalWaterAmount - firstPourAmount) % 4 !== 0) divisibleByFourOffset++
+    })
+
+    onDestroy(() => {
+        clearInterval(interval);
     })
 </script>
     

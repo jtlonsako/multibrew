@@ -6,6 +6,8 @@
     let divisibleByFourOffset = $state(0)
     let firstPourAmount = $derived(Math.floor(totalWaterAmount / 5) - divisibleByFourOffset)
     let divisiblePourAmount = $derived((totalWaterAmount - firstPourAmount) / 4)
+
+    let pourAmountArray = $derived(Array(5).fill(0).map((trash, i) => firstPourAmount + (divisiblePourAmount * i)))
     
 
     $effect(() => {
@@ -41,24 +43,14 @@
         </div>
     
         <div id="PourAmountContainer" class="w-full grid justify-items-center text-xl font-mono">
-            <div class="w-60 grid grid-cols-12">
-                <div class="col-span-1"></div>
-                <div class="col-span-8">
-                    <div class="w-full grid grid-cols-2 justify-items-center">
-                        <p>Pour 1: </p>
-                        <p>{firstPourAmount}ml</p>
-                    </div>
-                </div>
-                <p class="ml-2 lg:ml-5 text-green-400 col-span-2">+{firstPourAmount}ml</p>
-            </div>
-            {#each Array(4) as item, i}
+            {#each pourAmountArray as pourAmount, i}
                 <div class="w-60 grid grid-cols-12">
                     <div class="col-span-1"></div>
                     <div class="w-full col-span-8 grid grid-cols-2 justify-items-center">
-                        <p class="pt-1">Pour {i + 2}: </p>
-                        <p>{firstPourAmount + divisiblePourAmount * (i + 1)}ml</p>
+                        <p class="pt-1">Pour {i + 1}: </p>
+                        <p>{pourAmount}ml</p>
                     </div>
-                    <p class="ml-2 lg:ml-5 text-green-400 col-span-2">+{divisiblePourAmount}ml</p>
+                    <p class="ml-2 lg:ml-5 text-green-400 col-span-2">+{pourAmount > firstPourAmount ? divisiblePourAmount : firstPourAmount}ml</p>
                 </div>
             {/each}
         </div>
