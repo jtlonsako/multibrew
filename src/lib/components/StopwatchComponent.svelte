@@ -25,7 +25,6 @@
                 elapsedTimeInMilliseconds = currentTime - beginningTime;
                 elapsedTimeToDisplay = formatTime(elapsedTimeInMilliseconds);
             }, 10)
-            console.log("Started");
         }
     }
 
