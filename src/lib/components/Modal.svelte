@@ -28,15 +28,15 @@
 
 </script>
 
-<div class="absolute h-screen w-screen grid place-items-center -my-24 items-center bg-zinc-900 bg-opacity-80">
-	{#if open}
+{#if open}
+	<div class="{open ? "absolute top-0" : ""} h-screen w-screen grid place-items-center items-center bg-zinc-900 bg-opacity-80">
 		<div
 			on:outside={closeModal}
 			use:clickOutside
 			transition:fade
-			class="grid w-5/6 md:w-3/12 rounded-lg pt-8 pb-10 z-10 place-items-center bg-opacity-100 bg-zinc-600"
+			class="grid w-5/6 md:w-3/12 rounded-lg -my-24 pt-8 pb-10 z-10 place-items-center bg-opacity-100 bg-zinc-600"
 		>
 			<slot />
 		</div>
-	{/if}
-</div>
+	</div>
+{/if}

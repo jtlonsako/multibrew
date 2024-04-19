@@ -38,6 +38,10 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@capacitor/android": "^5.7.4",
+		"@capacitor/cli": "^5.7.4",
+		"@capacitor/core": "^5.7.4",
+		"@capacitor/ios": "^5.7.4",
 		"@popperjs/core": "^2.11.8",
 		"@vercel/analytics": "^1.2.2",
 		"tailwind-merge": "^2.0.0"

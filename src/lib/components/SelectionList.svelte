@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import Modal from "./Modal.svelte";
 	import SelectorIconDisplay from "./SelectorIconDisplay.svelte";
     import {createEventDispatcher} from "svelte";
@@ -124,12 +124,12 @@
     <div id="LevelContainer" class="flex flex-row mt-4 text-xl">
 
         <!--Create three divs, which will each potentially be holding a button from fullArray-->
-        <div class="w-28 h-10 m-3 grid grid-cols-1 place-items-center">
+        <div class="w-24 sm:w-28 h-10 m-3 grid grid-cols-1 place-items-center">
             {#each fullButtonArray.filter((button) => button["Index"] == 0) as button (button)}
                 <button 
                 id={button.Title} 
                 on:click={moveButtonsRight} 
-                class="px-10 w-1/3 font-extralight text-xl text-zinc-500 mt-4 grid grid-cols-1 justify-items-center"
+                class="px-10 w-1/3 font-extralight text-base sm:text-xl text-zinc-500 mt-4 grid grid-cols-1 justify-items-center"
                 >
                         <p class="font-serif tracking-wide">
                             {button.Title}
@@ -142,7 +142,7 @@
             {/each}
         </div>
 
-        <div class="w-28 h-10 m-3 grid grid-cols-1 place-items-center">
+        <div class="w-24 sm:w-28 h-10 m-3 grid grid-cols-1 place-items-center">
             {#each fullButtonArray.filter((button) => button["Index"] == 1) as button (button)}
                 <button
                 id={button.Title} 
@@ -161,7 +161,7 @@
             {/each}
         </div>
 
-        <div class="w-28 h-10 m-3 grid grid-cols-1 place-items-center">
+        <div class="w-24 sm:w-28 h-10 m-3 grid grid-cols-1 place-items-center">
             {#each fullButtonArray.filter((button) => button["Index"] == 2) as button (button)}
                 <button 
                 id={button.Title} 
@@ -181,7 +181,6 @@
         </div>
     </div>
 </div>
-{#if modalOpen}
     <Modal
     bind:open={modalOpen}
     >
@@ -213,7 +212,6 @@
             </div>
         </div>
     </Modal>
-{/if}
 
 <style>
     /* Chrome, Safari, Edge, Opera */
