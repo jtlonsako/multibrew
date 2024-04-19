@@ -65,7 +65,7 @@
     {#if finalDisplayType === "quantity"}
         <div class="w-full grid grid-cols-10 md:grid-cols-5">
             <div class="col-span-1 md:col-span-1"></div>
-            <div class="col-span-8 md:col-span-3 col-start-2" in:fly={{x: -500, duration: 350, opacity: 0}} out:fly={{x: -500, duration: 350, easing: sineOut, opacity: 0}}>
+            <div class="col-span-8 md:col-span-3 col-start-2">
                 <FinalRecipeComponent 
                     totalCoffeeGrounds={finalRecipeResults[0]} 
                     totalWaterAmount = {finalRecipeResults[1]}
@@ -86,7 +86,7 @@
             }}>
                 <Icon icon="ic:outline-arrow-back-ios" color="white" width="32" height="32" />
             </button>
-            <div class="col-span-8 md:col-span-3 col-start-2" in:fly={{x: (featureSwitchButton == "left" ? -500 : 500), duration: 350, easing: sineIn, opacity: 0}} out:fly={{x: (featureSwitchButton == "left" ? 500 : -500), duration: 350, easing: sineOut, opacity: 0}}>
+            <div class="col-span-8 md:col-span-3 col-start-2">
                 <PourAmountComponent 
                     totalCoffeeGrounds={finalRecipeResults[0]} 
                     totalWaterAmount={finalRecipeResults[1]}
@@ -107,7 +107,7 @@
         }}>
             <Icon icon="ic:outline-arrow-back-ios" color="white" width="32" height="32" />
         </button>
-        <div class="col-span-8 md:col-span-3 col-start-2" in:fly={{x: 500, duration: 350, opacity: 0}} out:fly={{x: 500, duration: 350, opacity: 0}}>
+        <div class="col-span-8 md:col-span-3 col-start-2">
             <StopwatchComponent 
                 totalCoffeeGrounds={finalRecipeResults[0]} 
                 totalWaterAmount={finalRecipeResults[1]}
