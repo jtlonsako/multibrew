@@ -1,7 +1,7 @@
 <script>
 	import { fade } from "svelte/transition";
 
-	let {open} = $props()
+	let {open = $bindable()} = $props()
 
 	function closeModal() {
 		open = false

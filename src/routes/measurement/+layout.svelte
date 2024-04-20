@@ -9,7 +9,9 @@
 	import { goto } from "$app/navigation";
 
         // $currentBrewMethod = coffeeData.find((brewMethod) => brewMethod.route == $page.url.searchParams.get('brewMethod'));
+    onMount(() => {
         $currentBrewMethod = $page.url.searchParams.get('brewMethod');
+    })
 
     let tempVar = $derived(coffeeData.find((brewMethod) => brewMethod.route === $currentBrewMethod))
 

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { dev } from '$app/environment';
+  import { Capacitor } from '@capacitor/core';
   import { inject } from "@vercel/analytics";
   import Icon from "@iconify/svelte";
   import Modal from '$lib/components/Modal.svelte';
@@ -13,6 +14,10 @@
     isOpen = meh
   }
 </script>
+{#if Capacitor.getPlatform() === 'ios'}
+  <div class="safe-area"></div>
+{/if}
+<div class="w-screen h-screen">
 <Modal bind:open={isOpen}>
   <div class="rounded-lg w-full h-fit text-slate-100">
     <div class="flex justify-start align-top -mt-7 ml-4">
@@ -22,12 +27,10 @@
         <p class="text-base font-normal text-center -mt-3 mb-1">App Information</p>
         <hr class="w-48 h-0 mx-auto opacity-30 rounded">
         <div class="grid w-4/6 justify-items-center text-left gap-y-2">
-          <p class="mt-2">- Version: 0.1.1</p>
-          <p>
-            - Info: I have slightly refactored the code to hopefully make it possible to port to mobile. As a 
-            result, any previous bookmarks are broken and must be reset, sorry for the inconvenience :(
-          </p>
-
+          <p class="mt-2">Version: 1.1</p>
+          <p>Made with ♥ by Josh L.</p>
+          <p class="text-sm font-light">(aka <em>badeveloper</em>)</p>
+          <p>Inquiries: multibrew@gmail.com</p>
         </div>
     </div>
   </div>
@@ -40,3 +43,13 @@
   </div>
   <slot />
 </div>
+</div>
+
+<style>
+  div.safe-area {
+    height: calc(env(safe-area-inset-top) + 2px);
+    position: sticky;
+    z-index: 1000;
+    top:0
+  }
+</style>

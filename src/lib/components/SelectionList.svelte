@@ -8,9 +8,9 @@
     let {
             selectorName, 
             selectorLevels, 
-            selectedLevelValue, 
+            selectedLevelValue = $bindable(), 
             selectorLevelDescription,
-            selectionListType
+            selectionListType = $bindable()
         } = $props()
 
     const CUSTOM_BUTTON_MIN = selectorLevelDescription.customButtonInfo[selectionListType].min
